@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 export default function Prematch(props) {
     function onIdChange(e) {
         props.handleIdChange(e.target.value);
@@ -17,43 +19,72 @@ export default function Prematch(props) {
 
     return (
         <>
-            <h1 id="phase-title">PREMATCH</h1>
+            <h1 className="phase-title">PREMATCH</h1>
             <div className="form">
                 <form>
-                    <div id="form-row">
-                        <label>iD</label>
-                        <input type={"number"} value={props.id} onChange={onIdChange}></input>
-                    </div>
+                    <div className="formRow">
+                        <div className="hMiddlebox right">
+                            <label className="inputLabel">iD:</label>
+                        </div>
 
-                    <div id="form-row">
-                        <label>Match</label>
-                        <input type={"number"} value={props.match} onChange={onMatchChange}></input>
+                        <input className="textInput" type={"number"} value={props.id} onChange={onIdChange} />
                     </div>
+                    <div className="formRow">
+                        <div className="hMiddlebox right">
+                            <label className="inputLabel">Match:</label>
+                        </div>
 
-                    <div id="form-row">
-                        <label>Team</label>
-                        <input type={"number"} value={props.team} onChange={onTeamChange}></input>
+                        <input className="textInput" type={"number"} value={props.match} onChange={onMatchChange} />
                     </div>
+                    <div className="formRow">
+                        <div className="hMiddlebox right">
+                            <label className="inputLabel">Team:</label>
+                        </div>
 
-                    <div id="form-row">
-                        <label>Alliance</label>
-                        <select value={props.alliance} onChange={onAllianceChange}>
-                            <optgroup label="Blue">
-                                <option value="blue-1">Blue-1</option>
-                                <option value="blue-2">Blue-2</option>
-                                <option value="blue-3">Blue-3</option>
-                            </optgroup>
-                            <optgroup label="Red">
-                                <option value="red-1">Red-1</option>
-                                <option value="red-2">Red-2</option>
-                                <option value="red-3">Red-3</option>
-                            </optgroup>
-                        </select>
+                        <input className="textInput" type={"number"} value={props.team} onChange={onTeamChange} />
                     </div>
+                    <div className="centerbox">
+                        <label className="inputLabel">Alliance</label>
+                    </div>
+                    <div className="formRow">
+                        <div className="hMiddlebox right">
+                            <div className="columnbox">
+                                <label className="radioText">
+                                    <input type={"radio"} value={"blue-1"} checked={props.alliance === "blue-1"} onChange={onAllianceChange} />
+                                    Blue-1
+                                </label>
+                                <label className="radioText">
+                                    <input type={"radio"} value={"blue-2"} checked={props.alliance === "blue-2"} onChange={onAllianceChange} />
+                                    Blue-2
+                                </label>
+                                <label className="radioText">
+                                    <input type={"radio"} value={"blue-3"} checked={props.alliance === "blue-3"} onChange={onAllianceChange} />
+                                    Blue-3
+                                </label>
+                            </div>
+                        </div>
 
-                    <div id="form-row">
-                        <label>Event</label>
-                        <input type={"text"} value={"SFR"} disabled={true}></input>
+                        <div className="columnbox">
+                            <label className="radioText">
+                                <input type={"radio"} value={"red-1"} checked={props.alliance === "red-1"} onChange={onAllianceChange} />
+                                Red-1
+                            </label>
+                            <label className="radioText">
+                                <input type={"radio"} value={"red-2"} checked={props.alliance === "red-2"} onChange={onAllianceChange} />
+                                Red-2
+                            </label>
+                            <label className="radioText">
+                                <input type={"radio"} value={"red-3"} checked={props.alliance === "red-3"} onChange={onAllianceChange} />
+                                Red-3
+                            </label>
+                        </div>
+                    </div>
+                    <div className="formRow">
+                        <div className="hMiddlebox right">
+                            <label className="inputLabel">Event:</label>
+                        </div>
+
+                        <input className="textInput" type={"text"} value={"SFR"} disabled={true} />
                     </div>
                 </form>
             </div>

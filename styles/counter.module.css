@@ -1,0 +1,27 @@
+#counter {
+    display: inline-block;
+}
+
+#grid {
+    display: grid;
+    grid-template-columns: 30px 30px 30px;
+    height: 30px;
+}
+
+#plus, #minus {
+    font-family: "Fira Sans, bold";
+    font-size: 14pt;
+    color: white;
+    background-color: black;
+    border: 1px solid white;
+}
+
+#number {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Fira Sans, bold";
+    font-size: 14pt;
+    color: black;
+    background-color: white;
+}

@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Prematch from "./phases/prematch"
 import Auto from "./phases/auto"
 import Teleop from "./phases/teleop"
@@ -18,40 +18,63 @@ export default function App() {
     const next = useRef();
     const submit = useRef();
 
-    let count = 0
+    useEffect(() => {
+        auto.current.style.display = "none";
+        teleop.current.style.display = "none";
+        endgame.current.style.display = "none";
+        summary.current.style.display = "none";
+    }, [])
+
+    const page = useRef(0); // this value must persist between re-renders
     const phases = [prematch, auto, teleop, endgame, summary]
 
     function handleBack() {
-        if (count != 0) {
-            phases[count].current.style.display = "none";
-            count--;
-            phases[count].current.style.display = "block";
-        }
+        switch (page.current) {
+            case 1: // When on the Auto page
+                phases[page.current].current.style.display = "none";
+                page.current--
+                phases[page.current].current.style.display = "block";
 
-        if (count == 3) {
-            submit.current.style.display = "none";
-            next.current.style.display = "inline-block";
-        }
+                back.current.style.display = "none";
+                break;
+            case 4: // When on the Summary page
+                phases[page.current].current.style.display = "none";
+                page.current--
+                phases[page.current].current.style.display = "block";
 
-        if (count == 0) {
-            back.current.style.display = "none";
+                submit.current.style.display = "none";
+                next.current.style.display = "inline-block";
+                break;
+            default:
+                phases[page.current].current.style.display = "none";
+                page.current--
+                phases[page.current].current.style.display = "block";
+                break;
         }
     }
 
     function handleNext() {
-        if (count != 4) {
-            phases[count].current.style.display = "none";
-            count++;
-            phases[count].current.style.display = "block";
-        }
-
-        if (count == 1) {
-            back.current.style.display = "inline-block";
-        }
-
-        if (count == 4) {
-            next.current.style.display = "none";
-            submit.current.style.display = "inline-block";
+        switch (page.current) {
+            case 0: // When on the Prematch page
+                phases[page.current].current.style.display = "none";
+                page.current++;
+                phases[page.current].current.style.display = "block";
+                
+                back.current.style.display = "inline-block";
+                break;
+            case 3: // When on the Endgame page
+                phases[page.current].current.style.display = "none";
+                page.current++;
+                phases[page.current].current.style.display = "block";
+                
+                submit.current.style.display = "inline-block";
+                next.current.style.display = "none";
+                break;
+            default:
+                phases[page.current].current.style.display = "none";
+                page.current++
+                phases[page.current].current.style.display = "block";
+                break;
         }
     }
 
@@ -59,9 +82,8 @@ export default function App() {
         e.preventDefault();
     }
 
-    // Default Settings
+    // ##### STATES & EVENT HANLDERS #####
 
-    // ##### STATES #####
     // Prematch
     const [id, setId] = useState("");
     const [match, setMatch] = useState("");
@@ -69,44 +91,44 @@ export default function App() {
     const [alliance, setAlliance] = useState("");
     const [event, setEvent] = useState("");
 
-    // ##### EVENT HANDLERS #####
-    // Prematch
-    function handleIdChange(id) {
-        setId(id);
-    }
+    function handleIdChange(id) { setId(id); }
+    function handleMatchChange(match) { setMatch(match); }
+    function handleTeamChange(team) { setTeam(team); }
+    function handleAllianceChange(alliance) { setAlliance(alliance); }
 
-    function handleMatchChange(match) {
-        setMatch(match);
-    }
+    // Auto
+    const [taxi, setTaxi] = useState("")
+    const [preload, setPreload] = useState("");
+    const [chargeStation, setChargeStation] = useState("");
+    const [autoEngaged, setAutoEngaged] = useState("NOT engaged");
 
-    function handleTeamChange(team) {
-        setTeam(team);
-    }
-
-    function handleAllianceChange(alliance) {
-        setAlliance(alliance);
-    }
+    function handleTaxiChange(taxi) { setTaxi(taxi); }
+    function handlePreloadChange(preload) { setPreload(preload); }
+    function handleChargeStationChange(chargeStation) { setChargeStation(chargeStation); }
+    function handleAutoEngagedChange(autoEngaged) { setAutoEngaged(autoEngaged);}
 
     return (
         <>
             <Head>
                 <title>2023 Charged Up</title>
+                <meta charSet='UTF-8' />
             </Head>
 
             <h1 id="game-title">2023 CHARGED UP</h1>
             <div ref={prematch}>
-                <Prematch id={id} match={match} team={team} alliance={alliance} handleIdChange={handleIdChange} handleMatchChange={handleMatchChange} handleTeamChange={handleTeamChange} handleAllianceChange={handleAllianceChange} />
+                <Prematch id={id} match={match} team={team} alliance={alliance}
+                    handleIdChange={handleIdChange} handleMatchChange={handleMatchChange} handleTeamChange={handleTeamChange} handleAllianceChange={handleAllianceChange} />
             </div>
-            <div style={{display: "none"}} ref={auto}>
-                <Auto />
+            <div ref={auto}>
+                <Auto taxi={taxi} preload={preload} chargeStation={chargeStation} autoEngaged={autoEngaged} handleTaxiChange={handleTaxiChange} handlePreloadChange={handlePreloadChange} handleChargeStationChange={handleChargeStationChange} handleAutoEngagedChange={handleAutoEngagedChange} />
             </div>
-            <div style={{display: "none"}} ref={teleop}>
+            <div ref={teleop}>
                 <Teleop />
             </div>
-            <div style={{display: "none"}} ref={endgame}>
+            <div ref={endgame}>
                 <Endgame />
             </div>
-            <div style={{display: "none"}} ref={summary}>
+            <div ref={summary}>
                 <Summary />
             </div>
 

@@ -22,8 +22,12 @@ body {
     border-bottom: 3px solid white;
 }
 
-#phase-title {
+.phase-title {
     text-align: center;
+}
+
+.phases {
+    display: none;
 }
 
 .form {
@@ -49,28 +53,46 @@ body {
     display: none;
 }
 
-#form-row {
+/* Form Styles */
+
+.centerbox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+}
+
+.formRow { /* Used to divide form questions and form entry elements evenly by the middle */
     display: grid;
     grid-template-columns: 50% 50%;
-    margin-top: 10px;
+    grid-gap: 10px;
+    margin: 10px;
 }
 
-label {
-    text-align: right;
-    font-size: 16pt;
-    margin: 5px;
+.right {
+    justify-content: right;
 }
 
-input {
+.inputLabel {
+    font-size: 14pt;
+}
+
+.textInput {
     font-family: "Fira Sans";
     font-size: 12pt;
     width: 100px;
-    margin: 5px;
 }
 
-select {
-    font-family: "Fira Sans";
-    font-size: 12pt;
-    width: 108px;
-    margin: 5px;
+.radioText {
+    font-size: 14pt;
+}
+
+.columnbox {
+    display: flex;
+    flex-direction: column;
+}
+
+.hMiddlebox {
+    display: flex;
+    align-items: center;
 }
