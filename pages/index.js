@@ -91,21 +91,48 @@ export default function App() {
     const [alliance, setAlliance] = useState("");
     const [event, setEvent] = useState("");
 
-    function handleIdChange(id) { setId(id); }
-    function handleMatchChange(match) { setMatch(match); }
-    function handleTeamChange(team) { setTeam(team); }
-    function handleAllianceChange(alliance) { setAlliance(alliance); }
+    function handleId(id) { setId(id); }
+    function handleMatch(match) { setMatch(match); }
+    function handleTeam(team) { setTeam(team); }
+    function handleAlliance(alliance) { setAlliance(alliance); }
 
     // Auto
     const [taxi, setTaxi] = useState("")
-    const [preload, setPreload] = useState("");
+    const [autoScore, setAutoScore] = useState({
+        "top": [0, 0],
+        mid: [0, 0],
+        bot: [0, 0]
+    })
     const [chargeStation, setChargeStation] = useState("");
-    const [autoEngaged, setAutoEngaged] = useState("NOT engaged");
+    const [autoEngaged, setAutoEngaged] = useState(0);
 
-    function handleTaxiChange(taxi) { setTaxi(taxi); }
-    function handlePreloadChange(preload) { setPreload(preload); }
-    function handleChargeStationChange(chargeStation) { setChargeStation(chargeStation); }
-    function handleAutoEngagedChange(autoEngaged) { setAutoEngaged(autoEngaged);}
+    function handleTaxi(taxi) { setTaxi(taxi); }
+    function handleAutoScore(score, row, piece) {
+        const scoreCopy = autoScore;
+
+        let index;
+        if (piece == "cone") {
+            index = 0;
+        } else if (piece == "cube") {
+            index = 1;
+        }
+
+        if (row == "top") {
+            scoreCopy.top[index] = score;
+        }
+
+        if (row == "mid") {
+            scoreCopy.mid[index] = score;
+        }
+
+        if (row == "bot") {
+            scoreCopy.bot[index] = score;
+        }
+
+        setAutoScore(scoreCopy);
+    }
+    function handleChargeStation(chargeStation) { setChargeStation(chargeStation); }
+    function handleAutoEngaged(autoEngaged) { setAutoEngaged(autoEngaged);}
 
     return (
         <>
@@ -117,10 +144,11 @@ export default function App() {
             <h1 id="game-title">2023 CHARGED UP</h1>
             <div ref={prematch}>
                 <Prematch id={id} match={match} team={team} alliance={alliance}
-                    handleIdChange={handleIdChange} handleMatchChange={handleMatchChange} handleTeamChange={handleTeamChange} handleAllianceChange={handleAllianceChange} />
+                    handleId={handleId} handleMatch={handleMatch} handleTeam={handleTeam} handleAlliance={handleAlliance} />
             </div>
             <div ref={auto}>
-                <Auto taxi={taxi} preload={preload} chargeStation={chargeStation} autoEngaged={autoEngaged} handleTaxiChange={handleTaxiChange} handlePreloadChange={handlePreloadChange} handleChargeStationChange={handleChargeStationChange} handleAutoEngagedChange={handleAutoEngagedChange} />
+                <Auto taxi={taxi} autoScore={autoScore} chargeStation={chargeStation}
+                    autoEngaged={autoEngaged} handleTaxi={handleTaxi} handleAutoScore={handleAutoScore} handleChargeStation={handleChargeStation} handleAutoEngaged={handleAutoEngaged} />
             </div>
             <div ref={teleop}>
                 <Teleop />

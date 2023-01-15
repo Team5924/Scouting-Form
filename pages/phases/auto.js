@@ -1,29 +1,21 @@
-import { useState } from "react";
+import Counter from "@/components/counter";
 
 export default function Auto(props) {
     function onTaxiChange(e) {
-        props.handleTaxiChange(e.target.value);
-    }
-
-    function onPreloadChange(e) {
-        props.handlePreloadChange(e.target.value);
+        props.handleTaxi(e.target.value);
     }
 
     function onChargeStationChange(e) {
-        props.handleChargeStationChange(e.target.value);
+        props.handleChargeStation(e.target.value);
     }
 
     function onEngagedChange(e) {
-        if (e.target.value === "") {
-            props.handleAutoEngagedChange("engaged");
-        } else if (e.target.value === "engaged") {
-            props.handleAutoEngagedChange("");
+        if (e.target.value == 0) {
+            props.handleAutoEngaged(1);
+        } else if (e.target.value == 0) {
+            props.handleAutoEngaged(1);
         }
     }
-
-    // no robot on cs
-    // this robot on cs
-    // alliance robot on cs
 
     return (
         <>
@@ -36,30 +28,35 @@ export default function Auto(props) {
                         </div>
 
                         <div>
-                            <label className="radioText">
-                                <input type="radio" value="Yes" checked={props.taxi === "Yes"} onChange={onTaxiChange} />
-                                Yes
-                            </label>
-                            <label className="radioText">
-                                <input type="radio" value="No" checked={props.taxi === "No"} onChange={onTaxiChange} />
-                                No
-                            </label>
+                            <div className="hMiddlebox">
+                                <div className="hMiddlebox">
+                                    <input className="radioInput" type="radio" value={1} checked={props.taxi == 1} onChange={onTaxiChange} />
+                                    <label className="radioLabel">Yes</label>
+                                </div>
+                                <div className="hMiddlebox">
+                                    <input className="radioInput" type="radio" value={0} checked={props.taxi == 0} onChange={onTaxiChange} />
+                                    <label className="radioLabel">No</label>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div className="formRow">
-                        <div className="hMiddlebox right">
-                            <label className="inputLabel">Preload Game Piece:</label>
-                        </div>
-
-                        <div>
-                            <label className="radioText">
-                                <input type="radio" value="Cube" checked={props.preload === "Cube"} onChange={onPreloadChange} />
-                                Cube
-                            </label>
-                            <label className="radioText">
-                                <input type="radio" value="Cone" checked={props.preload === "Cone"} onChange={onPreloadChange} />
-                                Cone
-                            </label>
+                    <div className="centerbox">
+                        <label className="inputLabel">Scoring</label>
+                    </div>
+                    <div className="centerbox">
+                        <div className="counterGrid">
+                            <div className="gridItem"></div>
+                            <div className="gridItem">Cones</div>
+                            <div className="gridItem">Cubes</div>
+                            <div className="gridItem">Top</div>
+                            <div className="gridItem"><Counter row="top" piece="cone" maxCount={3} handleScore={props.handleAutoScore} /></div>
+                            <div className="gridItem"><Counter row="top" piece="cube" maxCount={3} handleScore={props.handleAutoScore}/></div>
+                            <div className="gridItem">Mid</div>
+                            <div className="gridItem"><Counter row="mid" piece="cone" maxCount={3} handleScore={props.handleAutoScore}/></div>
+                            <div className="gridItem"><Counter row="mid" piece="cube" maxCount={3} handleScore={props.handleAutoScore}/></div>
+                            <div className="gridItem">Bot</div>
+                            <div className="gridItem"><Counter row="bot" piece="cone" maxCount={3} handleScore={props.handleAutoScore}/></div>
+                            <div className="gridItem"><Counter row="bot" piece="cube" maxCount={3} handleScore={props.handleAutoScore}/></div>
                         </div>
                     </div>
                     <div className="formRow">
@@ -67,28 +64,28 @@ export default function Auto(props) {
                             <label className="inputLabel">Charge Station:</label>
                         </div>
                         
-                        <div>
+                        <div className="hMiddlebox">
                             <div className="columnbox">
-                                <label className="radioText">
-                                    <input type="radio" value="Teammate Docked" checked={props.chargeStation === "Teammate Docked"} onChange={onChargeStationChange} />
-                                    Teammate docked
-                                </label>
-                                <label className="radioText">
-                                    <input type="radio" value="This Team Docked" checked={props.chargeStation === "This Team Docked"} onChange={onChargeStationChange} />
-                                    This team docked
-                                </label>
-                                <label className="radioText">
-                                    <input type="radio" value="None" checked={props.chargeStation === "None"} onChange={onChargeStationChange} />
-                                    No one docked
-                                </label>
+                                <div className="hMiddlebox radioMargin">
+                                    <input type="radio" value="a-d" checked={props.chargeStation == "a-d"} onChange={onChargeStationChange} />
+                                    <label className="radioLabel">Teammate docked</label>
+                                </div>
+                                <div className="hMiddlebox radioMargin">
+                                    <input type="radio" value="t-d" checked={props.chargeStation == "r-d"} onChange={onChargeStationChange} />
+                                    <label className="radioLabel">This team docked</label>
+                                </div>
+                                <div className="hMiddlebox radioMargin">
+                                    <input type="radio" value={0} checked={props.chargeStation == 0} onChange={onChargeStationChange} />
+                                    <label className="radioLabel">No one docked</label>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div className="centerbox">
-                        <label>
-                            Engaged?
-                            <input type="checkbox" value={props.autoEngaged} onChange={onEngagedChange}/>
-                        </label>
+                        <div className="hMiddlebox">
+                            <label className="inputLabel">Engaged?</label>
+                            <input className="radioInput" type="checkbox" value={props.autoEngaged} onChange={onEngagedChange}/>
+                        </div>
                     </div>
                 </form>
             </div>

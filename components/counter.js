@@ -5,13 +5,13 @@ export default function Counter(props) {
     const [counter, setCounter] = useState(0);
 
     function onPlus() {
-        setCounter(counter + 1);
-        // props.handleScore(counter);
+        (counter + 1 ) > props.maxCount ? null : setCounter(counter + 1);
+        props.handleScore(counter, props.row, props.piece);
     }
 
     function onMinus() {
-        counter === 0 ? null : setCounter(counter - 1);
-        // props.handleScore(counter);
+        counter == 0 ? null : setCounter(counter - 1);
+        props.handleScore(counter, props.row, props.piece);
     }
 
     return (

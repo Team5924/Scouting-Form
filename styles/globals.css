@@ -33,7 +33,6 @@ body {
 .form {
     border: 2px solid white;
     margin: 10px;
-    padding: 10px;
 }
 
 #nav {
@@ -62,19 +61,44 @@ body {
     margin: 10px;
 }
 
-.formRow { /* Used to divide form questions and form entry elements evenly by the middle */
+.gridItem {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid white;
+    padding: 10px;
+}
+
+.formRow { /* Divides each row into two slots, intentionally uneven */
     display: grid;
-    grid-template-columns: 50% 50%;
-    grid-gap: 10px;
+    grid-template-columns: 45% 55%;
+    grid-gap: 5px;
     margin: 10px;
+}
+
+.rowCenter { /* Divides each row into two equal slots */
+    grid-template-columns: 50% 50%;
 }
 
 .right {
     justify-content: right;
+    text-align: right;
+}
+
+.blue {
+    color: hsl(208, 100%, 50%);
+}
+
+.red {
+    color: hsl(0, 85%, 50%);
 }
 
 .inputLabel {
-    font-size: 14pt;
+    font-size: 11pt;
+}
+
+.radioLabel {
+    font-size: 11pt;
 }
 
 .textInput {
@@ -83,16 +107,30 @@ body {
     width: 100px;
 }
 
-.radioText {
-    font-size: 14pt;
+.radioInput {
+    margin: 0 3px 0 5px;
 }
 
+/* Typically used for organizing radios vertically */
 .columnbox {
     display: flex;
     flex-direction: column;
 }
 
-.hMiddlebox {
+/* Default margin for column radios to prevent scouters from fatfingering */
+.radioMargin {
+    margin: 5px 0 5px 0;
+}
+
+/* Aligns elements at the center, horizontally */
+/* Initially used after .formRow, also used for aligning radios and their labels together */
+.hMiddlebox { 
     display: flex;
     align-items: center;
+}
+
+.counterGrid {
+    display: grid;
+    grid-template-rows: auto auto auto auto;
+    grid-template-columns: auto auto auto;
 }
