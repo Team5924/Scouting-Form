@@ -1,4 +1,4 @@
-import Counter from "@/components/counter";
+import Grid from "@/components/grid";
 
 export default function Auto(props) {
     function onTaxiChange(e) {
@@ -10,11 +10,8 @@ export default function Auto(props) {
     }
 
     function onEngagedChange(e) {
-        if (e.target.value == 0) {
-            props.handleAutoEngaged(1);
-        } else if (e.target.value == 0) {
-            props.handleAutoEngaged(1);
-        }
+        e.target.value == 0 ? props.handleAutoEngaged(1) : null;
+        e.target.value == 1 ? props.handleAutoEngaged(0) : null;
     }
 
     return (
@@ -22,6 +19,9 @@ export default function Auto(props) {
             <h1 className="phase-title">AUTO</h1>
             <div className="form">
                 <form>
+                    <div style={{display: "flex", justifyContent: "center"}}>
+                        <Grid handleScore={props.handleAutoScore} />
+                    </div>
                     <div className="formRow">
                         <div className="hMiddlebox right">
                             <label className="inputLabel">Taxi:</label>
@@ -40,25 +40,6 @@ export default function Auto(props) {
                             </div>
                         </div>
                     </div>
-                    <div className="centerbox">
-                        <label className="inputLabel">Scoring</label>
-                    </div>
-                    <div className="centerbox">
-                        <div className="counterGrid">
-                            <div className="gridItem"></div>
-                            <div className="gridItem">Cones</div>
-                            <div className="gridItem">Cubes</div>
-                            <div className="gridItem">Top</div>
-                            <div className="gridItem"><Counter row="top" piece="cone" maxCount={3} handleScore={props.handleAutoScore} /></div>
-                            <div className="gridItem"><Counter row="top" piece="cube" maxCount={3} handleScore={props.handleAutoScore}/></div>
-                            <div className="gridItem">Mid</div>
-                            <div className="gridItem"><Counter row="mid" piece="cone" maxCount={3} handleScore={props.handleAutoScore}/></div>
-                            <div className="gridItem"><Counter row="mid" piece="cube" maxCount={3} handleScore={props.handleAutoScore}/></div>
-                            <div className="gridItem">Bot</div>
-                            <div className="gridItem"><Counter row="bot" piece="cone" maxCount={3} handleScore={props.handleAutoScore}/></div>
-                            <div className="gridItem"><Counter row="bot" piece="cube" maxCount={3} handleScore={props.handleAutoScore}/></div>
-                        </div>
-                    </div>
                     <div className="formRow">
                         <div className="hMiddlebox right">
                             <label className="inputLabel">Charge Station:</label>
@@ -71,7 +52,7 @@ export default function Auto(props) {
                                     <label className="radioLabel">Teammate docked</label>
                                 </div>
                                 <div className="hMiddlebox radioMargin">
-                                    <input type="radio" value="t-d" checked={props.chargeStation == "r-d"} onChange={onChargeStationChange} />
+                                    <input type="radio" value="t-d" checked={props.chargeStation == "t-d"} onChange={onChargeStationChange} />
                                     <label className="radioLabel">This team docked</label>
                                 </div>
                                 <div className="hMiddlebox radioMargin">

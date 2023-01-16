@@ -84,7 +84,7 @@ export default function App() {
 
     // ##### STATES & EVENT HANLDERS #####
 
-    // Prematch
+    // ### PREMATCH ###
     const [id, setId] = useState("");
     const [match, setMatch] = useState("");
     const [team, setTeam] = useState("");
@@ -96,43 +96,51 @@ export default function App() {
     function handleTeam(team) { setTeam(team); }
     function handleAlliance(alliance) { setAlliance(alliance); }
 
-    // Auto
+    // ### AUTO ###
     const [taxi, setTaxi] = useState("")
     const [autoScore, setAutoScore] = useState({
-        "top": [0, 0],
-        mid: [0, 0],
-        bot: [0, 0]
-    })
+        top: [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        mid: [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        botCone: [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        botCube: [0, 0, 0, 0, 0, 0, 0, 0, 0]
+    });
     const [chargeStation, setChargeStation] = useState("");
     const [autoEngaged, setAutoEngaged] = useState(0);
 
     function handleTaxi(taxi) { setTaxi(taxi); }
-    function handleAutoScore(score, row, piece) {
-        const scoreCopy = autoScore;
+    function handleChargeStation(chargeStation) { setChargeStation(chargeStation); }
+    function handleAutoEngaged(autoEngaged) { setAutoEngaged(autoEngaged); }
+    function handleAutoScore(score, row, column) {
+        const scoreCopy = teleopScore;
 
-        let index;
-        if (piece == "cone") {
-            index = 0;
-        } else if (piece == "cube") {
-            index = 1;
-        }
+        row == "top" ? scoreCopy.top[column] = score : null;
+        row == "mid" ? scoreCopy.mid[column] = score : null;
+        row == "botCone" ? scoreCopy.botCone[column] = score : null;
+        row == "botCube" ? scoreCopy.botCube[column] = score : null;
 
-        if (row == "top") {
-            scoreCopy.top[index] = score;
-        }
-
-        if (row == "mid") {
-            scoreCopy.mid[index] = score;
-        }
-
-        if (row == "bot") {
-            scoreCopy.bot[index] = score;
-        }
-
+        console.log(scoreCopy);
         setAutoScore(scoreCopy);
     }
-    function handleChargeStation(chargeStation) { setChargeStation(chargeStation); }
-    function handleAutoEngaged(autoEngaged) { setAutoEngaged(autoEngaged);}
+    
+    // ### TELEOP ###
+    const [teleopScore, setTeleopScore] = useState({
+        top: [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        mid: [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        botCone: [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        botCube: [0, 0, 0, 0, 0, 0, 0, 0, 0]
+    });
+
+    function handleTeleopScore(score, row, column) {
+        const scoreCopy = teleopScore;
+
+        row == "top" ? scoreCopy.top[column] = score : null;
+        row == "mid" ? scoreCopy.mid[column] = score : null;
+        row == "botCone" ? scoreCopy.botCone[column] = score : null;
+        row == "botCube" ? scoreCopy.botCube[column] = score : null;
+
+        console.log(scoreCopy);
+        setTeleopScore(scoreCopy);
+    }
 
     return (
         <>
@@ -147,11 +155,11 @@ export default function App() {
                     handleId={handleId} handleMatch={handleMatch} handleTeam={handleTeam} handleAlliance={handleAlliance} />
             </div>
             <div ref={auto}>
-                <Auto taxi={taxi} autoScore={autoScore} chargeStation={chargeStation}
-                    autoEngaged={autoEngaged} handleTaxi={handleTaxi} handleAutoScore={handleAutoScore} handleChargeStation={handleChargeStation} handleAutoEngaged={handleAutoEngaged} />
+                <Auto taxi={taxi} chargeStation={chargeStation}
+                    autoEngaged={autoEngaged} handleTaxi={handleTaxi} autoScore={autoScore} handleAutoScore={handleAutoScore} handleChargeStation={handleChargeStation} handleAutoEngaged={handleAutoEngaged} />
             </div>
             <div ref={teleop}>
-                <Teleop />
+                <Teleop teleopScore={teleopScore} handleTeleopScore={handleTeleopScore} />
             </div>
             <div ref={endgame}>
                 <Endgame />
