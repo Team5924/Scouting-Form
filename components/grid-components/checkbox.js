@@ -1,55 +1,34 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "@/styles/checkbox.module.css"
 
 export default function Checkbox(props) {
     const [checked, setChecked] = useState(0);
-    const [disable, setDisable] = useState(false);
+    const [dummyCounter, setDummyCounter] = useState(0);
+
+    useEffect(() => {
+        if (props.sharedValue) {
+            if (props.row == "botCone") {
+                setChecked(props.sharedValue[0]);
+            } else if (props.row == "botCube") {
+                setChecked(props.sharedValue[1])
+            }
+        }
+    }, [dummyCounter])
+
 
     function onCheckboxChange(e) {
-        // check identity; cones = 0, cubes = 1
-        if (props.row == "botCone") {
-            if (props.isDisable[0] == 0) {
-                if (e.target.value == 0) {
-                    // selected; the other checkbox is disabled
-                    setChecked(1);
-                    props.handleCheckbox(1, props.row, props.column);
-                    props.handleDisable(1, props.row, props.column);
-                }
-        
-                if (e.target.value == 1) {
-                    setChecked(0);
-                    props.handleCheckbox(0, props.row, props.column);
-                    props.handleDisable(0, props.row, props.column);
-                }
-            }
-        } else if (props.row == "botCube") {
-            if (props.isDisable[1] == 0) {
-                if (e.target.value == 0) {
-                    setChecked(1);
-                    props.handleCheckbox(1, props.row, props.column);
-                    props.handleDisable(1, props.row, props.column);
-                }
-        
-                if (e.target.value == 1) {
-                    setChecked(0);
-                    props.handleCheckbox(0, props.row, props.column);
-                    props.handleDisable(0, props.row, props.column);
-                }
-            }
+        if (props.row == "botCone" || props.row == "botCube") {
+            props.handleSharedValue(props.row)
+            setDummyCounter(dummyCounter + 1);
         } else {
-            if (e.target.value == 0) {
-                setChecked(1);
-                props.handleCheckbox(1, props.row, props.column);
-            } else if (e.target.value == 1) {
-                setChecked(0);
-                props.handleCheckbox(0, props.row, props.column);
-            }
+            checked == 0 ? setChecked(1) : checked == 1 ? setChecked(0) : null;
+            props.handleCheckbox(checked, props.row, props.column)
         }
     }
 
     return (
         <>
-            <input className={styles.checkbox} type="checkbox" value={checked} checked={checked == 1} disabled={disable} onChange={onCheckboxChange}/>
+            <input className={styles.checkbox} type="checkbox" value={checked} checked={checked == 1} onChange={onCheckboxChange}/>
         </>
     )
 }

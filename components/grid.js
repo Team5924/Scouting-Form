@@ -20,6 +20,27 @@ export default function Grid(props) {
         setIsDisable(disableCopy);
     }
 
+    const [sharedValue, setSharedValue] = useState([0, 0]);
+    function handleSharedValue(row) {
+
+        let index;
+        row == "botCone" ? index = 0 : row == "botCube" ? index = 1 : null;
+
+        const valueCopy = sharedValue
+        if (valueCopy[index] == 0) {
+            valueCopy[index] = 1;
+            if (index == 0) {
+                valueCopy[1] = 0;
+            } else if (index == 1) {
+                valueCopy[0] = 0;
+            }
+        } else if (valueCopy[index] == 1) {
+            valueCopy[index] = 0;
+        }
+
+        setSharedValue(valueCopy);
+    }
+
     return (
         <>
             <div className={styles.grid}>
@@ -101,7 +122,7 @@ export default function Grid(props) {
                     Bot&nbsp;<Cone />
                 </div>
                 <div className={styles.gridItem}>
-                    <Checkbox handleCheckbox={props.handleScore} row={"botCone"} column={0} isDisable={isDisable[0]} handleDisable={handleDisable} />
+                    <Checkbox handleCheckbox={props.handleScore} row={"botCone"} column={0} sharedValue={sharedValue} handleSharedValue={handleSharedValue}/>
                 </div>
                 <div className={styles.gridItem}>
                     <Checkbox handleCheckbox={props.handleScore} row={"botCone"} column={1} isDisable={isDisable[1]} handleDisable={handleDisable}/>   
@@ -132,7 +153,7 @@ export default function Grid(props) {
                     Bot&nbsp;<Cube />
                 </div>
                 <div className={styles.gridItem}>
-                    <Checkbox handleCheckbox={props.handleScore} row={"botCube"} column={0} isDisable={isDisable[0]} handleDisable={handleDisable}/>
+                    <Checkbox handleCheckbox={props.handleScore} row={"botCube"} column={0} sharedValue={sharedValue} handleSharedValue={handleSharedValue} />
                 </div>
                 <div className={styles.gridItem}>
                     <Checkbox handleCheckbox={props.handleScore} row={"botCube"} column={1} isDisable={isDisable[1]} handleDisable={handleDisable}/>   
