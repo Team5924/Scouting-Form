@@ -37,7 +37,7 @@ export default function App() {
 
                 back.current.style.display = "none";
                 break;
-            case 4: // When on the Summary page
+            case 2: // When on the Endgame page
                 phases[page.current].current.style.display = "none";
                 page.current--
                 phases[page.current].current.style.display = "block";
@@ -45,6 +45,13 @@ export default function App() {
                 submit.current.style.display = "none";
                 next.current.style.display = "inline-block";
                 break;
+            case 4: // When on Summary page
+                phases[page.current].current.style.display = "none";
+                page.current--
+                phases[page.current].current.style.display = "block";
+
+                submit.current.style.display = "inline-block";
+                break
             default:
                 phases[page.current].current.style.display = "none";
                 page.current--
@@ -62,7 +69,7 @@ export default function App() {
                 
                 back.current.style.display = "inline-block";
                 break;
-            case 3: // When on the Endgame page
+            case 2: // When on the Endgame page
                 phases[page.current].current.style.display = "none";
                 page.current++;
                 phases[page.current].current.style.display = "block";
@@ -80,6 +87,11 @@ export default function App() {
 
     function handleSubmit(e) {
         e.preventDefault();
+        phases[page.current].current.style.display = "none";
+        page.current++
+        phases[page.current].current.style.display = "blocK";
+
+        submit.current.style.display = "none";
     }
 
     // ##### STATES & EVENT HANLDERS #####
@@ -104,11 +116,11 @@ export default function App() {
         botCone: [0, 0, 0, 0, 0, 0, 0, 0, 0],
         botCube: [0, 0, 0, 0, 0, 0, 0, 0, 0]
     });
-    const [chargeStation, setChargeStation] = useState("");
+    const [autoChargeStation, setAutoChargeStation] = useState("");
     const [autoEngaged, setAutoEngaged] = useState(0);
 
     function handleTaxi(taxi) { setTaxi(taxi); }
-    function handleChargeStation(chargeStation) { setChargeStation(chargeStation); }
+    function handleAutoChargeStation(autoChargeStation) { setAutoChargeStation(autoChargeStation); }
     function handleAutoEngaged(autoEngaged) { setAutoEngaged(autoEngaged); }
     function handleAutoScore(score, row, column) {
         const scoreCopy = teleopScore;
@@ -142,6 +154,13 @@ export default function App() {
         setTeleopScore(scoreCopy);
     }
 
+    // ### ENDGAME ####
+    const [endgameChargeStation, setEndgameChargeStation] = useState("");
+    const [endgameEngaged, setEndgameEngaged] = useState(0);
+
+    function handleEndgameChargeStation(endgameChargeStation) { setEndgameChargeStation(endgameChargeStation); }
+    function handleEndgameEngaged(endgameEngaged) { setEndgameEngaged(endgameEngaged); }
+
     return (
         <>
             <Head>
@@ -155,14 +174,15 @@ export default function App() {
                     handleId={handleId} handleMatch={handleMatch} handleTeam={handleTeam} handleAlliance={handleAlliance} />
             </div>
             <div ref={auto}>
-                <Auto taxi={taxi} chargeStation={chargeStation}
-                    autoEngaged={autoEngaged} handleTaxi={handleTaxi} autoScore={autoScore} handleAutoScore={handleAutoScore} handleChargeStation={handleChargeStation} handleAutoEngaged={handleAutoEngaged} />
+                <Auto taxi={taxi} autoChargeStation={autoChargeStation}
+                    autoEngaged={autoEngaged} handleTaxi={handleTaxi} autoScore={autoScore} handleAutoScore={handleAutoScore} handleAutoChargeStation={handleAutoChargeStation} handleAutoEngaged={handleAutoEngaged} />
             </div>
             <div ref={teleop}>
                 <Teleop teleopScore={teleopScore} handleTeleopScore={handleTeleopScore} />
             </div>
             <div ref={endgame}>
-                <Endgame />
+                <Endgame endgameChargeStation={endgameChargeStation} endgameEngaged={endgameEngaged}
+                    handleEndgameChargeStation={handleEndgameChargeStation} handleEndgameEngaged={handleEndgameEngaged} />
             </div>
             <div ref={summary}>
                 <Summary />

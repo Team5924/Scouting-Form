@@ -6,7 +6,7 @@ export default function Auto(props) {
     }
 
     function onChargeStationChange(e) {
-        props.handleChargeStation(e.target.value);
+        props.handleAutoChargeStation(e.target.value);
     }
 
     function onEngagedChange(e) {
@@ -48,15 +48,18 @@ export default function Auto(props) {
                         <div className="hMiddlebox">
                             <div className="columnbox">
                                 <div className="hMiddlebox radioMargin">
-                                    <input type="radio" value="a-d" checked={props.chargeStation == "a-d"} onChange={onChargeStationChange} />
+                                    {/* "ad" = Alliance Docked */}
+                                    <input type="radio" value="aad" checked={props.autoChargedStation == "a-d"} onChange={onChargeStationChange} />
                                     <label className="radioLabel">Teammate docked</label>
                                 </div>
                                 <div className="hMiddlebox radioMargin">
-                                    <input type="radio" value="t-d" checked={props.chargeStation == "t-d"} onChange={onChargeStationChange} />
+                                    {/* "td" = Team Docked */}
+                                    <input type="radio" value="t-d" checked={props.autoChargedStation == "t-d"} onChange={onChargeStationChange} />
                                     <label className="radioLabel">This team docked</label>
                                 </div>
                                 <div className="hMiddlebox radioMargin">
-                                    <input type="radio" value={0} checked={props.chargeStation == 0} onChange={onChargeStationChange} />
+                                    {/* 0 = No one docked */}
+                                    <input type="radio" value={0} checked={props.autoChargedStation == 0} onChange={onChargeStationChange} />
                                     <label className="radioLabel">No one docked</label>
                                 </div>
                             </div>
