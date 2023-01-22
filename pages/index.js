@@ -140,13 +140,13 @@ export default function App() {
 
     // ### PREMATCH ###
     const [id, setId] = useState("");
-    const [match, setMatch] = useState("");
+    const [match, setMatch] = useState();
     const [team, setTeam] = useState("");
     const [alliance, setAlliance] = useState("");
     const [event, setEvent] = useState("");
 
     function handleId(id) { setId(id); }
-    function handleMatch(match) { setMatch(match); }
+    function handleMatch(match) { setMatch(parseInt(match)); }
     function handleTeam(team) { setTeam(team); }
     function handleAlliance(alliance) { setAlliance(alliance); }
 
