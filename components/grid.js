@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "@/styles/grid.module.css";
 import Cone from "./grid-components/cone";
 import Cube from "./grid-components/cube";
@@ -20,26 +20,12 @@ export default function Grid(props) {
         setIsDisable(disableCopy);
     }
 
-    const [sharedValue, setSharedValue] = useState([0, 0]);
-    function handleSharedValue(row) {
-
-        let index;
-        row == "botCone" ? index = 0 : row == "botCube" ? index = 1 : null;
-
-        const valueCopy = sharedValue
-        if (valueCopy[index] == 0) {
-            valueCopy[index] = 1;
-            if (index == 0) {
-                valueCopy[1] = 0;
-            } else if (index == 1) {
-                valueCopy[0] = 0;
-            }
-        } else if (valueCopy[index] == 1) {
-            valueCopy[index] = 0;
+    useEffect(() => {
+        return () => {
+            setIsDisable([[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]]);
         }
-
-        setSharedValue(valueCopy);
-    }
+    }, [props.clear])
+    
 
     return (
         <>
@@ -60,124 +46,124 @@ export default function Grid(props) {
                     Top
                 </div>
                 <div className={[styles.gridItem, styles.cone].join(" ")}>
-                    <Checkbox handleCheckbox={props.handleScore} row={"top"} column={0} />
+                    <Checkbox handleCheckbox={props.handleScore} row={"top"} column={0} clear={props.clear} />
                 </div>
                 <div className={[styles.gridItem, styles.cube].join(" ")}>
-                    <Checkbox handleCheckbox={props.handleScore} row={"top"} column={1} />   
+                    <Checkbox handleCheckbox={props.handleScore} row={"top"} column={1} clear={props.clear} />   
                 </div>
                 <div className={[styles.gridItem, styles.cone].join(" ")}>
-                    <Checkbox handleCheckbox={props.handleScore} row={"top"} column={2} />
+                    <Checkbox handleCheckbox={props.handleScore} row={"top"} column={2} clear={props.clear} />
                 </div>
                 <div className={styles.gridItem}>
-                    <Checkbox handleCheckbox={props.handleScore} row={"top"} column={3} />
+                    <Checkbox handleCheckbox={props.handleScore} row={"top"} column={3} clear={props.clear} />
                 </div>
                 <div className={[styles.gridItem, styles.cube].join(" ")}>
-                    <Checkbox handleCheckbox={props.handleScore} row={"top"} column={4} />
+                    <Checkbox handleCheckbox={props.handleScore} row={"top"} column={4} clear={props.clear} />
                 </div>
                 <div className={styles.gridItem}>   
-                    <Checkbox handleCheckbox={props.handleScore} row={"top"} column={5} />
+                    <Checkbox handleCheckbox={props.handleScore} row={"top"} column={5} clear={props.clear} />
                 </div>
                 <div className={[styles.gridItem, styles.cone].join(" ")}>
-                    <Checkbox handleCheckbox={props.handleScore} row={"top"} column={6} />
+                    <Checkbox handleCheckbox={props.handleScore} row={"top"} column={6} clear={props.clear} />
                 </div>
                 <div className={[styles.gridItem, styles.cube].join(" ")}>
-                    <Checkbox handleCheckbox={props.handleScore} row={"top"} column={7} />
+                    <Checkbox handleCheckbox={props.handleScore} row={"top"} column={7} clear={props.clear} />
                 </div>
                 <div className={[styles.gridItem, styles.cone].join(" ")}>
-                    <Checkbox handleCheckbox={props.handleScore} row={"top"} column={8} />
+                    <Checkbox handleCheckbox={props.handleScore} row={"top"} column={8} clear={props.clear} />
                 </div>
                 {/* ##### MID ROW ##### */}
                 <div className={styles.gridItem}>
                     Mid
                 </div>
                 <div className={[styles.gridItem, styles.cone].join(" ")}>
-                    <Checkbox handleCheckbox={props.handleScore} row={"mid"} column={0} />
+                    <Checkbox handleCheckbox={props.handleScore} row={"mid"} column={0} clear={props.clear} />
                 </div>
                 <div className={[styles.gridItem, styles.cube].join(" ")}>
-                    <Checkbox handleCheckbox={props.handleScore} row={"mid"} column={1} />   
+                    <Checkbox handleCheckbox={props.handleScore} row={"mid"} column={1} clear={props.clear} />   
                 </div>
                 <div className={[styles.gridItem, styles.cone].join(" ")}>
-                    <Checkbox handleCheckbox={props.handleScore} row={"mid"} column={2} />
+                    <Checkbox handleCheckbox={props.handleScore} row={"mid"} column={2} clear={props.clear} />
                 </div>
                 <div className={styles.gridItem}>
-                    <Checkbox handleCheckbox={props.handleScore} row={"mid"} column={3} />
+                    <Checkbox handleCheckbox={props.handleScore} row={"mid"} column={3} clear={props.clear} />
                 </div>
                 <div className={[styles.gridItem, styles.cube].join(" ")}>
-                    <Checkbox handleCheckbox={props.handleScore} row={"mid"} column={4} />
+                    <Checkbox handleCheckbox={props.handleScore} row={"mid"} column={4} clear={props.clear} />
                 </div>
                 <div className={styles.gridItem}>
-                    <Checkbox handleCheckbox={props.handleScore} row={"mid"} column={5} />
+                    <Checkbox handleCheckbox={props.handleScore} row={"mid"} column={5} clear={props.clear} />
                 </div>
                 <div className={[styles.gridItem, styles.cone].join(" ")}>
-                    <Checkbox handleCheckbox={props.handleScore} row={"mid"} column={6} />
+                    <Checkbox handleCheckbox={props.handleScore} row={"mid"} column={6} clear={props.clear} />
                 </div>
                 <div className={[styles.gridItem, styles.cube].join(" ")}>
-                    <Checkbox handleCheckbox={props.handleScore} row={"mid"} column={7} />
+                    <Checkbox handleCheckbox={props.handleScore} row={"mid"} column={7} clear={props.clear} />
                 </div>
                 <div className={[styles.gridItem, styles.cone].join(" ")}>
-                    <Checkbox handleCheckbox={props.handleScore} row={"mid"} column={8} />
+                    <Checkbox handleCheckbox={props.handleScore} row={"mid"} column={8} clear={props.clear} />
                 </div>
                 {/* ##### BOT (Cones) ROW ##### */}
                 <div className={styles.gridItem}>
                     Bot&nbsp;<Cone />
                 </div>
                 <div className={styles.gridItem}>
-                    <Checkbox handleCheckbox={props.handleScore} row={"botCone"} column={0} sharedValue={sharedValue} handleSharedValue={handleSharedValue}/>
+                    <Checkbox handleCheckbox={props.handleScore} row={"botCone"} column={0} clear={props.clear} isDisable={isDisable[0]} handleDisable={handleDisable} />
                 </div>
                 <div className={styles.gridItem}>
-                    <Checkbox handleCheckbox={props.handleScore} row={"botCone"} column={1} isDisable={isDisable[1]} handleDisable={handleDisable}/>   
+                    <Checkbox handleCheckbox={props.handleScore} row={"botCone"} column={1} clear={props.clear} isDisable={isDisable[1]} handleDisable={handleDisable}/>   
                 </div>
                 <div className={styles.gridItem}>
-                    <Checkbox handleCheckbox={props.handleScore} row={"botCone"} column={2} isDisable={isDisable[2]} handleDisable={handleDisable}/>
+                    <Checkbox handleCheckbox={props.handleScore} row={"botCone"} column={2} clear={props.clear} isDisable={isDisable[2]} handleDisable={handleDisable}/>
                 </div>
                 <div className={styles.gridItem}>
-                    <Checkbox handleCheckbox={props.handleScore} row={"botCone"} column={3} isDisable={isDisable[3]} handleDisable={handleDisable}/>
+                    <Checkbox handleCheckbox={props.handleScore} row={"botCone"} column={3} clear={props.clear} isDisable={isDisable[3]} handleDisable={handleDisable}/>
                 </div>
                 <div className={styles.gridItem}>
-                    <Checkbox handleCheckbox={props.handleScore} row={"botCone"} column={4} isDisable={isDisable[4]} handleDisable={handleDisable}/>
+                    <Checkbox handleCheckbox={props.handleScore} row={"botCone"} column={4} clear={props.clear} isDisable={isDisable[4]} handleDisable={handleDisable}/>
                 </div>
                 <div className={styles.gridItem}>
-                    <Checkbox handleCheckbox={props.handleScore} row={"botCone"} column={5} isDisable={isDisable[5]} handleDisable={handleDisable}/>
+                    <Checkbox handleCheckbox={props.handleScore} row={"botCone"} column={5} clear={props.clear} isDisable={isDisable[5]} handleDisable={handleDisable}/>
                 </div>
                 <div className={styles.gridItem}>
-                    <Checkbox handleCheckbox={props.handleScore} row={"botCone"} column={6} isDisable={isDisable[6]} handleDisable={handleDisable}/>
+                    <Checkbox handleCheckbox={props.handleScore} row={"botCone"} column={6} clear={props.clear} isDisable={isDisable[6]} handleDisable={handleDisable}/>
                 </div>
                 <div className={styles.gridItem}>
-                    <Checkbox handleCheckbox={props.handleScore} row={"botCone"} column={7} isDisable={isDisable[7]} handleDisable={handleDisable}/>
+                    <Checkbox handleCheckbox={props.handleScore} row={"botCone"} column={7} clear={props.clear} isDisable={isDisable[7]} handleDisable={handleDisable}/>
                 </div>
                 <div className={styles.gridItem}>
-                    <Checkbox handleCheckbox={props.handleScore} row={"botCone"} column={8} isDisable={isDisable[8]} handleDisable={handleDisable}/>
+                    <Checkbox handleCheckbox={props.handleScore} row={"botCone"} column={8} clear={props.clear} isDisable={isDisable[8]} handleDisable={handleDisable}/>
                 </div>
                 {/* ##### BOT (Cubes) Row ##### */}
                 <div className={styles.gridItem}>
                     Bot&nbsp;<Cube />
                 </div>
                 <div className={styles.gridItem}>
-                    <Checkbox handleCheckbox={props.handleScore} row={"botCube"} column={0} sharedValue={sharedValue} handleSharedValue={handleSharedValue} />
+                    <Checkbox handleCheckbox={props.handleScore} row={"botCube"} column={0} clear={props.clear} isDisable={isDisable[0]} handleDisable={handleDisable}/>
                 </div>
                 <div className={styles.gridItem}>
-                    <Checkbox handleCheckbox={props.handleScore} row={"botCube"} column={1} isDisable={isDisable[1]} handleDisable={handleDisable}/>   
+                    <Checkbox handleCheckbox={props.handleScore} row={"botCube"} column={1} clear={props.clear} isDisable={isDisable[1]} handleDisable={handleDisable}/>   
                 </div>
                 <div className={styles.gridItem}>
-                    <Checkbox handleCheckbox={props.handleScore} row={"botCube"} column={2} isDisable={isDisable[2]} handleDisable={handleDisable}/>
+                    <Checkbox handleCheckbox={props.handleScore} row={"botCube"} column={2} clear={props.clear} isDisable={isDisable[2]} handleDisable={handleDisable}/>
                 </div>
                 <div className={styles.gridItem}>
-                    <Checkbox handleCheckbox={props.handleScore} row={"botCube"} column={3} isDisable={isDisable[3]} handleDisable={handleDisable}/>
+                    <Checkbox handleCheckbox={props.handleScore} row={"botCube"} column={3} clear={props.clear} isDisable={isDisable[3]} handleDisable={handleDisable}/>
                 </div>
                 <div className={styles.gridItem}>
-                    <Checkbox handleCheckbox={props.handleScore} row={"botCube"} column={4} isDisable={isDisable[4]} handleDisable={handleDisable}/>
+                    <Checkbox handleCheckbox={props.handleScore} row={"botCube"} column={4} clear={props.clear} isDisable={isDisable[4]} handleDisable={handleDisable}/>
                 </div>
                 <div className={styles.gridItem}>
-                    <Checkbox handleCheckbox={props.handleScore} row={"botCube"} column={5} isDisable={isDisable[5]} handleDisable={handleDisable}/>
+                    <Checkbox handleCheckbox={props.handleScore} row={"botCube"} column={5} clear={props.clear} isDisable={isDisable[5]} handleDisable={handleDisable}/>
                 </div>
                 <div className={styles.gridItem}>
-                    <Checkbox handleCheckbox={props.handleScore} row={"botCube"} column={6} isDisable={isDisable[6]} handleDisable={handleDisable}/>
+                    <Checkbox handleCheckbox={props.handleScore} row={"botCube"} column={6} clear={props.clear} isDisable={isDisable[6]} handleDisable={handleDisable}/>
                 </div>
                 <div className={styles.gridItem}>
-                    <Checkbox handleCheckbox={props.handleScore} row={"botCube"} column={7} isDisable={isDisable[7]} handleDisable={handleDisable}/>
+                    <Checkbox handleCheckbox={props.handleScore} row={"botCube"} column={7} clear={props.clear} isDisable={isDisable[7]} handleDisable={handleDisable}/>
                 </div>
                 <div className={styles.gridItem}>
-                    <Checkbox handleCheckbox={props.handleScore} row={"botCube"} column={8} isDisable={isDisable[8]} handleDisable={handleDisable}/>
+                    <Checkbox handleCheckbox={props.handleScore} row={"botCube"} column={8} clear={props.clear} isDisable={isDisable[8]} handleDisable={handleDisable}/>
                 </div>
             </div>
         </>

@@ -22,7 +22,7 @@ export default function Endgame(props) {
                             <div className="columnbox">
                                 <div className="hMiddlebox radioMargin">
                                     {/* "td" = This team docked */}
-                                    <input type="radio" value="etd" checked={props.endgameChargeStation == "t-d"} onChange={onChargeStationChange} />
+                                    <input type="radio" value="td" checked={props.endgameChargeStation == "td"} onChange={onChargeStationChange} />
                                     <label className="radioLabel">This team docked</label>
                                 </div>
                                 <div className="hMiddlebox radioMargin">
@@ -36,7 +36,7 @@ export default function Endgame(props) {
                     <div className="centerbox">
                         <div className="hMiddlebox">
                             <label className="inputLabel">Engaged?</label>
-                            <input className="radioInput" type="checkbox" value={props.endgameEngaged} onChange={onEngagedChange}/>
+                            <input className="radioInput" type="checkbox" value={props.endgameEngaged} checked={props.endgameEngaged == 1} onChange={onEngagedChange}/>
                         </div>
                     </div>
                 </form>

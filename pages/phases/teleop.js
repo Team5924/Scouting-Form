@@ -9,7 +9,7 @@ export default function Teleop(props) {
                     Record Only What Your Team Scores
                 </div>
                 <div style={{display: "flex", justifyContent: "center"}}>
-                    <Grid handleScore={props.handleTeleopScore} />
+                    <Grid handleScore={props.handleTeleopScore} clear={props.clear} />
                 </div>
             </div>
         </>

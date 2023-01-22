@@ -39,7 +39,7 @@ body {
     text-align: center;
 }
 
-#backButton, #nextButton, #submitButton {
+#backButton, #nextButton, #submitButton, #resetButton {
     font-family: "Fira Sans, bold";
     font-size: 14pt;
     margin: 2.5px;
@@ -48,7 +48,7 @@ body {
     border: none;
 }
 
-#backButton, #submitButton {
+#backButton, #submitButton, #resetButton {
     display: none;
 }
 
