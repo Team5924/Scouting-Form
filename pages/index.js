@@ -5,7 +5,6 @@ import Auto from "./phases/auto"
 import Teleop from "./phases/teleop"
 import Endgame from "./phases/endgame"
 import Summary from './phases/summary'
-import { arEG } from 'date-fns/locale'
 
 export default function App() {
     // ###### NAVIGATION #####
@@ -147,7 +146,7 @@ export default function App() {
 
     function handleId(id) { setId(id); }
     function handleMatch(match) { setMatch(parseInt(match)); }
-    function handleTeam(team) { setTeam(team); }
+    function handleTeam(team) { setTeam(parseInt(team)); }
     function handleAlliance(alliance) { setAlliance(alliance); }
 
     // ### AUTO ###
@@ -208,9 +207,9 @@ export default function App() {
 
     function parseData() {
         const dataObject = {
-            "id": id,
-            "match": match,
-            "team": team,
+            "id": parseInt(id),
+            "match": parseInt(match),
+            "team": parseInt(team),
             "alliance": alliance,
             "taxi": taxi,
             "autoChargeStation": autoChargeStation,
