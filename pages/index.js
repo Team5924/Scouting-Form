@@ -211,7 +211,7 @@ export default function App() {
             "match": parseInt(match),
             "team": parseInt(team),
             "alliance": alliance,
-            "taxi": taxi,
+            "taxi": parseInt(taxi),
             "autoChargeStation": autoChargeStation,
             "autoEngaged": autoEngaged,
             "autoScore": autoScore,

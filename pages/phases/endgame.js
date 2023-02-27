@@ -23,12 +23,12 @@ export default function Endgame(props) {
                                 <div className="hMiddlebox radioMargin">
                                     {/* "td" = This team docked */}
                                     <input type="radio" value="td" checked={props.endgameChargeStation == "td"} onChange={onChargeStationChange} />
-                                    <label className="radioLabel">This team docked</label>
+                                    <label className="radioLabel">Docked</label>
                                 </div>
                                 <div className="hMiddlebox radioMargin">
                                     {/* 0 = No one docked */}
                                     <input type="radio" value={0} checked={props.endgameChargeStation == 0} onChange={onChargeStationChange} />
-                                    <label className="radioLabel">No one docked</label>
+                                    <label className="radioLabel">Not docked</label>
                                 </div>
                             </div>
                         </div>
