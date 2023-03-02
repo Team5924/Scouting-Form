@@ -1,13 +1,14 @@
 import Head from 'next/head'
 import { useEffect, useRef, useState } from 'react'
-import Prematch from "./phases/prematch"
-import Auto from "./phases/auto"
+import Prematch from './phases/Prematch.js'
+// import Auto from "./phases/Auto/auto"
+import Auto from './phases/Auto.js'
 import Teleop from "./phases/teleop"
 import Endgame from "./phases/endgame"
 import Summary from './phases/summary'
 
 export default function App() {
-    // ###### NAVIGATION #####
+    // * ###### NAVIGATION #####
     const prematch = useRef();
     const auto = useRef();
     const teleop = useRef();
@@ -135,29 +136,23 @@ export default function App() {
         next.current.style.display = "inline-block";
     }
 
-    // ##### STATES & EVENT HANLDERS #####
+    // * ##### STATES & EVENT HANLDERS #####
 
-    // ### PREMATCH ###
-    const [id, setId] = useState("");
-    const [match, setMatch] = useState();
-    const [team, setTeam] = useState("");
-    const [alliance, setAlliance] = useState("");
-    const [event, setEvent] = useState("");
+    // * Prematch
+    const [id, setId] = useState('');
+    const [match, setMatch] = useState('');
+    const [team, setTeam] = useState('');
+    const [alliance, setAlliance] = useState();
 
-    function handleId(id) { setId(id); }
-    function handleMatch(match) { setMatch(parseInt(match)); }
-    function handleTeam(team) { setTeam(parseInt(team)); }
-    function handleAlliance(alliance) { setAlliance(alliance); }
-
-    // ### AUTO ###
+    // * Auto
+    const [taxi, setTaxi] = useState()
     const [autoScore, setAutoScore] = useState({
         top: [0, 0, 0, 0, 0, 0, 0, 0, 0],
         mid: [0, 0, 0, 0, 0, 0, 0, 0, 0],
         botCone: [0, 0, 0, 0, 0, 0, 0, 0, 0],
         botCube: [0, 0, 0, 0, 0, 0, 0, 0, 0]
     });
-    const [taxi, setTaxi] = useState()
-    const [autoChargeStation, setAutoChargeStation] = useState();
+    const [autoDocked, setAutoDocked] = useState();
     const [autoEngaged, setAutoEngaged] = useState(0);
 
     function handleTaxi(taxi) { setTaxi(taxi); }
@@ -174,7 +169,7 @@ export default function App() {
         setAutoScore(scoreCopy);
     }
     
-    // ### TELEOP ###
+    // * ### Teleop ###
     const [teleopScore, setTeleopScore] = useState({
         top: [0, 0, 0, 0, 0, 0, 0, 0, 0],
         mid: [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -231,21 +226,44 @@ export default function App() {
             </Head>
 
             <h1 id="game-title">2023 CHARGED UP</h1>
+
             <div ref={prematch}>
-                <Prematch id={id} match={match} team={team} alliance={alliance}
-                    handleId={handleId} handleMatch={handleMatch} handleTeam={handleTeam} handleAlliance={handleAlliance} />
+                <Prematch
+                    id={id}
+                    match={match}
+                    team={team}
+                    alliance={alliance}
+                    setId={setId}
+                    setMatch={setMatch}
+                    setTeam={setTeam}
+                    setAlliance={setAlliance}
+                />
             </div>
+
             <div ref={auto}>
-                <Auto taxi={taxi} autoChargeStation={autoChargeStation}
-                    autoEngaged={autoEngaged} handleTaxi={handleTaxi} autoScore={autoScore} clear={clear} handleAutoScore={handleAutoScore} handleAutoChargeStation={handleAutoChargeStation} handleAutoEngaged={handleAutoEngaged} />
+                {/* <Auto taxi={taxi} autoChargeStation={autoChargeStation}
+                    autoEngaged={autoEngaged} handleTaxi={handleTaxi} autoScore={autoScore} clear={clear} handleAutoScore={handleAutoScore} handleAutoChargeStation={handleAutoChargeStation} handleAutoEngaged={handleAutoEngaged} /> */}
+                <Auto
+                    taxi={taxi}
+                    autoScore={autoScore}
+                    autoDocked={autoDocked}
+                    autoEngaged={autoEngaged}
+                    setTaxi={setTaxi}
+                    setAutoScore={setAutoScore}
+                    setAutoDocked={setAutoDocked}
+                    setAutoEngaged={setAutoEngaged}
+                />
             </div>
+
             <div ref={teleop}>
                 <Teleop teleopScore={teleopScore} clear={clear} handleTeleopScore={handleTeleopScore} />
             </div>
+            
             <div ref={endgame}>
                 <Endgame endgameChargeStation={endgameChargeStation} endgameEngaged={endgameEngaged}
                     handleEndgameChargeStation={handleEndgameChargeStation} handleEndgameEngaged={handleEndgameEngaged} />
             </div>
+
             <div ref={summary}>
                 <Summary data={data} procData={procData} />
             </div>

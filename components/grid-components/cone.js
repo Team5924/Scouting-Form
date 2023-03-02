@@ -1,8 +1,8 @@
 export default function Cone() {
     return (
         <>
-            <svg style={{display: "flex"}} width={11} height={11}>
-                <polygon points="0,11 6,0, 11,11" fill={"yellow"} stroke={"black"} strokeWidth={1} />
+            <svg style={{display: "flex"}} width={12} height={12}>
+                <polygon points="0,12 6,0, 12,12" fill={"#FAB007"} stroke={"black"} strokeWidth={1} />
             </svg>
         </>
     )

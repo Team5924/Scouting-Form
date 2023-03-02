@@ -1,82 +1,25 @@
-import Grid from "@/components/grid";
-import { useEffect } from "react";
+import Compiler from "@/lib/compiler"
 
-export default function Auto(props) {
-    function onTaxiChange(e) {
-        props.handleTaxi(e.target.value);
-    }
+const Auto = ({ value, eventHandler}) => {
+    const questions = [
+        {
+            label: '',
+            component: 'coneCubeGrid',
+            value: value,
+            eventHandler: eventHandler
+        }
+    ]
 
-    function onChargeStationChange(e) {
-        props.handleAutoChargeStation(e.target.value);
-    }
-
-    function onEngagedChange(e) {
-        e.target.value == 0 ? props.handleAutoEngaged(1) : null;
-        e.target.value == 1 ? props.handleAutoEngaged(0) : null;
-    }
+    const form = Compiler(questions)
 
     return (
-        <>
+        <div>
             <h1 className="phase-title">AUTO</h1>
-            <div className="form">
-                <form>
-                    <div style={{display: "flex", justifyContent: "center"}}>
-                        Record Only What Your Team Scores
-                    </div>
-                    <div style={{display: "flex", justifyContent: "center"}}>
-                        <Grid handleScore={props.handleAutoScore} clear={props.clear} />
-                    </div>
-                    <div className="formRow">
-                        <div className="hMiddlebox right">
-                            <label className="inputLabel">Taxi:</label>
-                        </div>
 
-                        <div>
-                            <div className="hMiddlebox">
-                                <div className="hMiddlebox">
-                                    <input className="radioInput" type="radio" value={1} checked={props.taxi == 1} onChange={onTaxiChange} />
-                                    <label className="radioLabel">Yes</label>
-                                </div>
-                                <div className="hMiddlebox">
-                                    <input className="radioInput" type="radio" value={0} checked={props.taxi == 0} onChange={onTaxiChange} />
-                                    <label className="radioLabel">No</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="formRow">
-                        <div className="hMiddlebox right">
-                            <label className="inputLabel">Charge Station:</label>
-                        </div>
-                        
-                        <div className="hMiddlebox">
-                            <div className="columnbox">
-                                <div className="hMiddlebox radioMargin">
-                                    {/* "ad" = Alliance Docked */}
-                                    <input type="radio" value={"ad"} checked={props.autoChargeStation == "ad"} onChange={onChargeStationChange} />
-                                    <label className="radioLabel">Teammate docked</label>
-                                </div>
-                                <div className="hMiddlebox radioMargin">
-                                    {/* "td" = This team docked */}
-                                    <input type="radio" value="td" checked={props.autoChargeStation == "td"} onChange={onChargeStationChange} />
-                                    <label className="radioLabel">This team docked</label>
-                                </div>
-                                <div className="hMiddlebox radioMargin">
-                                    {/* 0 = No one docked */}
-                                    <input type="radio" value={0} checked={props.autoChargeStation == 0} onChange={onChargeStationChange} />
-                                    <label className="radioLabel">No one docked</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="centerbox">
-                        <div className="hMiddlebox">
-                            <label className="inputLabel">Engaged?</label>
-                            <input className="radioInput" type="checkbox" value={props.autoEngaged} checked={props.autoEngaged == 1} onChange={onEngagedChange}/>
-                        </div>
-                    </div>
-                </form>
+            <div className="form">
+                {form}
             </div>
-        </>
+        </div>
     )
 }
+export default Auto

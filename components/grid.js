@@ -30,7 +30,7 @@ export default function Grid(props) {
     return (
         <>
             <div className={styles.grid}>
-                {/* LABELS */}
+                {/* // * LABELS */}
                 <div className={styles.gridItem}></div>
                 <div className={[styles.gridItem, styles.grid1].join(" ")}>
                     Grid
@@ -41,7 +41,7 @@ export default function Grid(props) {
                 <div className={[styles.gridItem, styles.grid2].join(" ")}>
                     Grid
                 </div>
-                {/* ##### TOP ROW ##### */}
+                {/* // * ##### TOP ROW ##### */}
                 <div className={styles.gridItem}>
                     Top
                 </div>
@@ -54,13 +54,13 @@ export default function Grid(props) {
                 <div className={[styles.gridItem, styles.cone].join(" ")}>
                     <Checkbox handleCheckbox={props.handleScore} row={"top"} column={2} clear={props.clear} />
                 </div>
-                <div className={styles.gridItem}>
+                <div className={[styles.gridItem, styles.cone].join(" ")}>
                     <Checkbox handleCheckbox={props.handleScore} row={"top"} column={3} clear={props.clear} />
                 </div>
                 <div className={[styles.gridItem, styles.cube].join(" ")}>
                     <Checkbox handleCheckbox={props.handleScore} row={"top"} column={4} clear={props.clear} />
                 </div>
-                <div className={styles.gridItem}>   
+                <div className={[styles.gridItem, styles.cone].join(" ")}>   
                     <Checkbox handleCheckbox={props.handleScore} row={"top"} column={5} clear={props.clear} />
                 </div>
                 <div className={[styles.gridItem, styles.cone].join(" ")}>
@@ -72,7 +72,7 @@ export default function Grid(props) {
                 <div className={[styles.gridItem, styles.cone].join(" ")}>
                     <Checkbox handleCheckbox={props.handleScore} row={"top"} column={8} clear={props.clear} />
                 </div>
-                {/* ##### MID ROW ##### */}
+                {/* // * ##### MID ROW ##### */}
                 <div className={styles.gridItem}>
                     Mid
                 </div>
@@ -85,13 +85,13 @@ export default function Grid(props) {
                 <div className={[styles.gridItem, styles.cone].join(" ")}>
                     <Checkbox handleCheckbox={props.handleScore} row={"mid"} column={2} clear={props.clear} />
                 </div>
-                <div className={styles.gridItem}>
+                <div className={[styles.gridItem, styles.cone].join(" ")}>
                     <Checkbox handleCheckbox={props.handleScore} row={"mid"} column={3} clear={props.clear} />
                 </div>
                 <div className={[styles.gridItem, styles.cube].join(" ")}>
                     <Checkbox handleCheckbox={props.handleScore} row={"mid"} column={4} clear={props.clear} />
                 </div>
-                <div className={styles.gridItem}>
+                <div className={[styles.gridItem, styles.cone].join(" ")}>
                     <Checkbox handleCheckbox={props.handleScore} row={"mid"} column={5} clear={props.clear} />
                 </div>
                 <div className={[styles.gridItem, styles.cone].join(" ")}>
@@ -103,7 +103,7 @@ export default function Grid(props) {
                 <div className={[styles.gridItem, styles.cone].join(" ")}>
                     <Checkbox handleCheckbox={props.handleScore} row={"mid"} column={8} clear={props.clear} />
                 </div>
-                {/* ##### BOT (Cones) ROW ##### */}
+                {/* //* ##### BOT (Cones) ROW ##### */}
                 <div className={styles.gridItem}>
                     Bot&nbsp;<Cone />
                 </div>
@@ -134,7 +134,7 @@ export default function Grid(props) {
                 <div className={styles.gridItem}>
                     <Checkbox handleCheckbox={props.handleScore} row={"botCone"} column={8} clear={props.clear} isDisable={isDisable[8]} handleDisable={handleDisable}/>
                 </div>
-                {/* ##### BOT (Cubes) Row ##### */}
+                {/* //* ##### BOT (Cubes) Row ##### */}
                 <div className={styles.gridItem}>
                     Bot&nbsp;<Cube />
                 </div>

@@ -1,0 +1,15 @@
+.inputWrapper {
+    display: grid;
+    grid-template-columns: 45% 55%;
+    grid-gap: 5px;
+    width: 100%;
+}
+
+.inputWrapper > input {
+    width: 100px;
+    text-align: center;
+}
+
+.right {
+    text-align: right;
+}

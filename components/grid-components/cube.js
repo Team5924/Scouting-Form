@@ -1,8 +1,8 @@
 export default function Cube() {
     return (
         <>
-            <svg width={11} height={11}>
-                <rect width={11} height={11} fill={"darkorchid"} stroke={"black"} strokeWidth={2}/>
+            <svg width={12} height={12}>
+                <rect width={12} height={12} fill={"#7E51E2"} stroke={"black"} strokeWidth={2}/>
             </svg>
         </>
     )
