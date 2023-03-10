@@ -1,46 +1,37 @@
-export default function Endgame(props) {
-    function onChargeStationChange(e) {
-        props.handleEndgameChargeStation(e.target.value);
-    }
+import Compiler from "@/lib/compiler"
 
-    function onEngagedChange(e) {
-        e.target.value == 0 ? props.handleEndgameEngaged(1) : null;
-        e.target.value == 1 ? props.handleEndgameEngaged(0) : null;
-    }
+const Endgame = ({ park, endgameDocked, endgameEngaged, setPark, setEndgameDocked, setEndgameEngaged }) => {
+    const content = [
+        {
+            label: 'Parked?',
+            component: 'checkbox',
+            value: park,
+            eventHandler: setPark
+        },
+        {
+            label: 'Docked?',
+            component: 'checkbox',
+            value: endgameDocked,
+            eventHandler: setEndgameDocked
+        },
+        {
+            label: 'Engaged?',
+            component: 'checkbox',
+            value: endgameEngaged,
+            eventHandler: setEndgameEngaged
+        }
+    ]
+    
+    const form = Compiler(content)
 
     return (
-        <>
-            <h1 className="phase-title">ENDGAME</h1>
-            <div className="form">
-                <form>
-                    <div className="formRow">
-                        <div className="hMiddlebox right">
-                            <label className="inputLabel">Charge Station:</label>
-                        </div>
-                        
-                        <div className="hMiddlebox">
-                            <div className="columnbox">
-                                <div className="hMiddlebox radioMargin">
-                                    {/* "td" = This team docked */}
-                                    <input type="radio" value="td" checked={props.endgameChargeStation == "td"} onChange={onChargeStationChange} />
-                                    <label className="radioLabel">Docked</label>
-                                </div>
-                                <div className="hMiddlebox radioMargin">
-                                    {/* 0 = No one docked */}
-                                    <input type="radio" value={0} checked={props.endgameChargeStation == 0} onChange={onChargeStationChange} />
-                                    <label className="radioLabel">Not docked</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="centerbox">
-                        <div className="hMiddlebox">
-                            <label className="inputLabel">Engaged?</label>
-                            <input className="radioInput" type="checkbox" value={props.endgameEngaged} checked={props.endgameEngaged == 1} onChange={onEngagedChange}/>
-                        </div>
-                    </div>
-                </form>
+        <div>
+            <h1 className='phase-title' >ENDGAME</h1>
+
+            <div className='form'>
+                {form}
             </div>
-        </>
+        </div>
     )
 }
+export default Endgame

@@ -1,27 +1,24 @@
-import { useState, useEffect } from "react"
-import QRCode from "react-qr-code"
+import Compiler from '@/lib/compiler'
 
-export default function Summary(props) {
+const Summary = ({ data, setData }) => {
+    const content = [
+        {
+            component: 'qrCode',
+            value: data,
+            eventHandler: setData
+        }
+    ]
 
-    if (props.data != undefined) {
-        return (
-            <>
-            <h1 className="phase-title">SUMMARY</h1>
-            <div className="form">
-                <div className="centerbox">
-                    <QRCode
-                        value={props.data}
-                        style={{ width: "100vw" }}
-                    />
-                </div>
+    const form = Compiler(content)
+
+    return (
+        <div>
+            <h1 className='phase-title'>SUMMARY</h1>
+
+            <div className='form' style={{ border: 'none' }}>
+                {data != undefined && form}
             </div>
-        </>
-        )
-    } else {
-        return (
-            <>
-
-            </>
-        )
-    }
+        </div>
+    )
 }
+export default Summary

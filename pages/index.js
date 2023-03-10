@@ -1,222 +1,173 @@
 import Head from 'next/head'
-import { useEffect, useRef, useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import Prematch from './phases/Prematch.js'
-// import Auto from "./phases/Auto/auto"
-import Auto from './phases/Auto.js'
-import Teleop from "./phases/teleop"
-import Endgame from "./phases/endgame"
-import Summary from './phases/summary'
+import Auto from './phases/auto.js'
+import Teleop from './phases/teleop.js'
+import Endgame from './phases/endgame.js'
+import Summary from './phases/summary.js'
 
 export default function App() {
-    // * ###### NAVIGATION #####
-    const prematch = useRef();
-    const auto = useRef();
-    const teleop = useRef();
-    const endgame = useRef();
-    const summary = useRef();
-    
-    const back = useRef();
-    const next = useRef();
-    const submit = useRef();
-    const reset = useRef();
+    const prematch = useRef(null)
+    const auto = useRef(null)
+    const teleop = useRef(null)
+    const endgame = useRef(null)
+    const summary = useRef(null)
 
+    const back = useRef(null)
+    const submit = useRef(null)
+    const reset = useRef(null)
+    
     useEffect(() => {
-        auto.current.style.display = "none";
-        teleop.current.style.display = "none";
-        endgame.current.style.display = "none";
-        summary.current.style.display = "none";
+        summary.current.style.display = 'none'
+        back.current.style.display = 'none'
+        reset.current.style.display = 'none'
     }, [])
 
-    const page = useRef(0); // this value must persist between re-renders
-    const phases = [prematch, auto, teleop, endgame, summary]
+    const [page, setPage] = useState('form')
 
-    function handleBack() {
-        switch (page.current) {
-            case 1: // When on the Auto page
-                phases[page.current].current.style.display = "none";
-                page.current--
-                phases[page.current].current.style.display = "block";
+    /**
+     * * A state machine that controls what the app displays
+     */
+    function updatePage() {
+        switch (page) {
+            case 'form':
+                prematch.current.style.display = 'none'
+                auto.current.style.display = 'none'
+                teleop.current.style.display = 'none'
+                endgame.current.style.display = 'none'
+                // switch to the summary
+                summary.current.style.display = 'block'
 
-                back.current.style.display = "none";
-                break;
-            case 3: // When on the Endgame page
-                phases[page.current].current.style.display = "none";
-                page.current--
-                phases[page.current].current.style.display = "block";
-
-                submit.current.style.display = "none";
-                next.current.style.display = "inline-block";
-                break;
-            case 4: // When on Summary page
-                phases[page.current].current.style.display = "none";
-                page.current--
-                phases[page.current].current.style.display = "block";
-
-                submit.current.style.display = "inline-block";
-                next.current.style.display = "none";
-                reset.current.style.display = "none";
+                submit.current.style.display = 'none'
+                back.current.style.display = 'block'
+                reset.current.style.display = 'block'
+                setPage('summary')
                 break
-            default:
-                phases[page.current].current.style.display = "none";
-                page.current--
-                phases[page.current].current.style.display = "block";
-                break;
+            case 'summary':
+                prematch.current.style.display = 'block'
+                auto.current.style.display = 'block'
+                teleop.current.style.display = 'block'
+                endgame.current.style.display = 'block'
+
+                // switch to the form
+                summary.current.style.display = 'none'
+
+                submit.current.style.display = 'block'
+                back.current.style.display = 'none'
+                reset.current.style.display = 'none'
+                setPage('form')
+                break
         }
     }
 
-    function handleNext() {
-        switch (page.current) {
-            case 0: // When on the Prematch page
-                phases[page.current].current.style.display = "none";
-                page.current++;
-                phases[page.current].current.style.display = "block";
-                
-                back.current.style.display = "inline-block";
-                break;
-            case 2: // When on the Endgame page
-                phases[page.current].current.style.display = "none";
-                page.current++;
-                phases[page.current].current.style.display = "block";
-                
-                submit.current.style.display = "inline-block";
-                next.current.style.display = "none";
-                break;
-            default:
-                phases[page.current].current.style.display = "none";
-                page.current++
-                phases[page.current].current.style.display = "block";
-                break;
+    /**
+     * * Compiles and returns a stringified object containing all data from the form
+     * @returns {Object} data
+     */
+    function parseData() {
+        const data = {
+            // prematch
+            'iD': parseInt(id),
+            'Match': parseInt(match),
+            'Team': parseInt(team),
+            'Alliance': parseInt(alliance),
+            'No Show': parseInt(noShow),
+            // auto
+            'Mobility': parseInt(mobility),
+            'Docked (Auto)': parseInt(autoDocked),
+            'Engaged (Auto)': parseInt(autoEngaged),
+            'Score (Auto)': autoScore,
+            // teleop
+            'Score (Total)': teleopScore,
+            'Disabled': parseInt(disabled),
+            // endgame
+            'Parked': park,
+            'Docked (Endgame)': parseInt(endgameDocked),
+            'Engaged (Endgame)': parseInt(endgameEngaged)
         }
+
+        // '@p' is a placeholder later used in the Scouting App
+        console.log(JSON.stringify(data) + '@p')
+        return JSON.stringify(data) + '@p'
     }
 
-    function handleSubmit(e) {
-        e.preventDefault();
-        phases[page.current].current.style.display = "none";
-        page.current++
-        phases[page.current].current.style.display = "blocK";
-
-        submit.current.style.display = "none";
-        reset.current.style.display = "inline-block";
-
-        setData(parseData());
-        setProcData(!procData);
+    function onBack() {
+        updatePage()
     }
 
-    function handleReset(e) {
-        setMatch(parseInt(match) + 1);
-        setTaxi();
-        setAutoChargeStation();
-        setAutoEngaged(0);
-        setAutoScore({
+    function onSubmit() {
+        setData(parseData())
+        updatePage()
+    }
+
+    /**
+     * * Resets the form questions to their corresponding default/new value
+     */
+    function onReset() {
+        // prematch
+        setMatch((previousMatch) => parseInt(previousMatch) + 1)
+        setTeam('')
+        setNoShow(0)
+        // auto
+        setMobility(0)
+        setAutoDocked(0)
+        setAutoEngaged(0)
+        handleAutoScore({
             top: [0, 0, 0, 0, 0, 0, 0, 0, 0],
             mid: [0, 0, 0, 0, 0, 0, 0, 0, 0],
             botCone: [0, 0, 0, 0, 0, 0, 0, 0, 0],
             botCube: [0, 0, 0, 0, 0, 0, 0, 0, 0]
-        });
-        setTeleopScore({
-            top: [0, 0, 0, 0, 0, 0, 0, 0, 0],
-            mid: [0, 0, 0, 0, 0, 0, 0, 0, 0],
-            botCone: [0, 0, 0, 0, 0, 0, 0, 0, 0],
-            botCube: [0, 0, 0, 0, 0, 0, 0, 0, 0]
-        });
-        setEndgameChargeStation();
-        setEndgameEngaged(0);
-
-        setClear(!clear);
-        
-        prematch.current.style.display = "block";
-        auto.current.style.display = "none";
-        teleop.current.style.display = "none";
-        endgame.current.style.display = "none";
-        summary.current.style.display = "none";
-        page.current = 0;
-
-        reset.current.style.display = "none";
-        back.current.style.display = "none";
-        next.current.style.display = "inline-block";
+        })
+        // teleop
+        // * teleopScore has been reseted by 'handleAutoScore'
+        setDisabled(0)
+        // endgame
+        setPark(0)
+        setEndgameDocked(0)
+        setEndgameEngaged(0)
+        updatePage()
     }
 
-    // * ##### STATES & EVENT HANLDERS #####
+    // * ### States & Event Handlers
+    
+    // ### Prematch
+    const [id, setId] = useState('')
+    const [match, setMatch] = useState('')
+    const [team, setTeam] = useState('')
+    const [alliance, setAlliance] = useState()
+    const [noShow, setNoShow] = useState(0)
 
-    // * Prematch
-    const [id, setId] = useState('');
-    const [match, setMatch] = useState('');
-    const [team, setTeam] = useState('');
-    const [alliance, setAlliance] = useState();
-
-    // * Auto
-    const [taxi, setTaxi] = useState()
+    // ### Auto
+    const [mobility, setMobility] = useState(0)
+    const [autoDocked, setAutoDocked] = useState(0)
+    const [autoEngaged, setAutoEngaged] = useState(0)
     const [autoScore, setAutoScore] = useState({
         top: [0, 0, 0, 0, 0, 0, 0, 0, 0],
         mid: [0, 0, 0, 0, 0, 0, 0, 0, 0],
         botCone: [0, 0, 0, 0, 0, 0, 0, 0, 0],
         botCube: [0, 0, 0, 0, 0, 0, 0, 0, 0]
     });
-    const [autoDocked, setAutoDocked] = useState();
-    const [autoEngaged, setAutoEngaged] = useState(0);
-
-    function handleTaxi(taxi) { setTaxi(taxi); }
-    function handleAutoChargeStation(chargeStation) { setAutoChargeStation(chargeStation); }
-    function handleAutoEngaged(engaged) { setAutoEngaged(engaged); }
-    function handleAutoScore(score, row, column) {
-        const scoreCopy = autoScore;
-
-        row == "top" ? scoreCopy.top[column] = score : null;
-        row == "mid" ? scoreCopy.mid[column] = score : null;
-        row == "botCone" ? scoreCopy.botCone[column] = score : null;
-        row == "botCube" ? scoreCopy.botCube[column] = score : null;
-
-        setAutoScore(scoreCopy);
+    const handleAutoScore = (score) => {
+        setAutoScore(score)
+        setTeleopScore(score)
     }
     
-    // * ### Teleop ###
+    // ### Teleop 
     const [teleopScore, setTeleopScore] = useState({
         top: [0, 0, 0, 0, 0, 0, 0, 0, 0],
         mid: [0, 0, 0, 0, 0, 0, 0, 0, 0],
         botCone: [0, 0, 0, 0, 0, 0, 0, 0, 0],
         botCube: [0, 0, 0, 0, 0, 0, 0, 0, 0]
     });
+    const [disabled, setDisabled] = useState(0)
 
-    function handleTeleopScore(score, row, column) {
-        const scoreCopy = teleopScore;
+    // ### Endgame 
+    const [park, setPark] = useState(0)
+    const [endgameDocked, setEndgameDocked] = useState(0)
+    const [endgameEngaged, setEndgameEngaged] = useState(0)
 
-        row == "top" ? scoreCopy.top[column] = score : null;
-        row == "mid" ? scoreCopy.mid[column] = score : null;
-        row == "botCone" ? scoreCopy.botCone[column] = score : null;
-        row == "botCube" ? scoreCopy.botCube[column] = score : null;
-
-        setTeleopScore(scoreCopy);
-    }
-
-    // ### ENDGAME ####
-    const [endgameChargeStation, setEndgameChargeStation] = useState();
-    const [endgameEngaged, setEndgameEngaged] = useState(0);
-
-    function handleEndgameChargeStation(endgameChargeStation) { setEndgameChargeStation(endgameChargeStation); }
-    function handleEndgameEngaged(endgameEngaged) { setEndgameEngaged(endgameEngaged); }
-    
-    // ### SUMMARY ###
-    const [data, setData] = useState();
-    const [procData, setProcData] = useState(false); // dummy state used to update data to the Summary page
-    const [clear, setClear] = useState(false);
-
-    function parseData() {
-        const dataObject = {
-            "id": parseInt(id),
-            "match": parseInt(match),
-            "team": parseInt(team),
-            "alliance": alliance,
-            "taxi": parseInt(taxi),
-            "autoChargeStation": autoChargeStation,
-            "autoEngaged": autoEngaged,
-            "autoScore": autoScore,
-            "teleopScore": teleopScore,
-            "endgameChargeStation": endgameChargeStation,
-            "endgameEngaged": endgameEngaged
-        }
-        console.log(dataObject);
-        return JSON.stringify(dataObject);
-    }
+    // ### Summary
+    const [data, setData] = useState()
 
     return (
         <>
@@ -225,7 +176,7 @@ export default function App() {
                 <meta charSet='UTF-8' />
             </Head>
 
-            <h1 id="game-title">2023 CHARGED UP</h1>
+            <h1 className='game-title'>2023 CHARGED UP</h1>
 
             <div ref={prematch}>
                 <Prematch
@@ -233,46 +184,60 @@ export default function App() {
                     match={match}
                     team={team}
                     alliance={alliance}
+                    noShow={noShow}
                     setId={setId}
                     setMatch={setMatch}
                     setTeam={setTeam}
                     setAlliance={setAlliance}
+                    setNoShow={setNoShow}
                 />
             </div>
 
             <div ref={auto}>
-                {/* <Auto taxi={taxi} autoChargeStation={autoChargeStation}
-                    autoEngaged={autoEngaged} handleTaxi={handleTaxi} autoScore={autoScore} clear={clear} handleAutoScore={handleAutoScore} handleAutoChargeStation={handleAutoChargeStation} handleAutoEngaged={handleAutoEngaged} /> */}
                 <Auto
-                    taxi={taxi}
-                    autoScore={autoScore}
+                    mobility={mobility}
                     autoDocked={autoDocked}
                     autoEngaged={autoEngaged}
-                    setTaxi={setTaxi}
-                    setAutoScore={setAutoScore}
+                    autoScore={autoScore}
+                    setMobility={setMobility}
                     setAutoDocked={setAutoDocked}
                     setAutoEngaged={setAutoEngaged}
+                    setAutoScore={handleAutoScore}
                 />
             </div>
 
             <div ref={teleop}>
-                <Teleop teleopScore={teleopScore} clear={clear} handleTeleopScore={handleTeleopScore} />
+                <Teleop
+                    teleopScore={teleopScore}
+                    disabled={disabled}
+                    setTeleopScore={setTeleopScore}
+                    setDisabled={setDisabled}
+                />
             </div>
-            
+
             <div ref={endgame}>
-                <Endgame endgameChargeStation={endgameChargeStation} endgameEngaged={endgameEngaged}
-                    handleEndgameChargeStation={handleEndgameChargeStation} handleEndgameEngaged={handleEndgameEngaged} />
+                <Endgame
+                    park={park}
+                    endgameDocked={endgameDocked}
+                    endgameEngaged={endgameEngaged}
+                    setPark={setPark}
+                    setEndgameDocked={setEndgameDocked}
+                    setEndgameEngaged={setEndgameEngaged}
+                />
             </div>
 
             <div ref={summary}>
-                <Summary data={data} procData={procData} />
+                <Summary
+                    data={data}
+                    setData={setData}
+                />
             </div>
 
-            <div id="nav">
-                <button ref={back} id="backButton" type="button" onClick={handleBack}>BACK</button>
-                <button ref={next} id="nextButton" type="button" onClick={handleNext}>NEXT</button>
-                <button ref={submit} id="submitButton" type="submit" onClick={handleSubmit}>SUBMIT</button>
-                <button ref={reset} id="resetButton" type="button" onClick={handleReset}>RESET</button>
+
+            <div className='nav'>
+                <button ref={back} className='backButton' type='button' onClick={onBack}>BACK</button>
+                <button ref={submit} className='submitButton' type='submit' onClick={onSubmit}>SUBMIT</button>
+                <button ref={reset} className='resetButton' type='button' onClick={onReset}>RESET</button>
             </div>
         </>
     )

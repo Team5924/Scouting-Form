@@ -1,17 +1,29 @@
-import Grid from "@/components/grid"
+import Compiler from "@/lib/compiler"
 
-export default function Teleop(props) {
+export default function Teleop({ teleopScore, disabled, setTeleopScore, setDisabled }) {
+    const content = [
+        {
+            component: 'coneCubeGrid',
+            value: teleopScore,
+            eventHandler: setTeleopScore,
+        },
+        {
+            label: 'Disabled?',
+            component: 'checkbox',
+            value: disabled,
+            eventHandler: setDisabled
+        }
+    ]
+
+    const form = Compiler(content)
+
     return (
-        <>
+        <div>
             <h1 className="phase-title">TELEOP</h1>
+
             <div className="form">
-                <div style={{display: "flex", justifyContent: "center"}}>
-                    Record Only What Your Team Scores
-                </div>
-                <div style={{display: "flex", justifyContent: "center"}}>
-                    <Grid handleScore={props.handleTeleopScore} clear={props.clear} />
-                </div>
+                {form}
             </div>
-        </>
+        </div>
     )
 }

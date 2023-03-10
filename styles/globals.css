@@ -15,7 +15,7 @@ body {
     color: white;
 }
 
-#game-title {
+.game-title {
     font-family: "Impact";
     color: #c0362c;
     text-align: center;
@@ -28,34 +28,26 @@ body {
     margin: 20px 0 20px 0;
 }
 
-.phases {
-    display: none;
-}
-
 .form {
     display: flex;
     flex-direction: column;
     grid-gap: 10px;
-    /* border: 1px solid white; */
+    border: 1px solid white;
     padding: 10px;
-    margin: 10px;
 }
 
-#nav {
-    text-align: center;
+.nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-gap: 5px;
+    margin: 20px;
 }
 
-#backButton, #nextButton, #submitButton, #resetButton {
+.backButton, .submitButton, .resetButton {
     font-family: Fira Sans;
+    font-size: 12pt;
     font-weight: bold;
-    font-size: 14pt;
-    margin: 2.5px;
-    text-decoration: none;
-    border: none;
-}
-
-#backButton, #submitButton, #resetButton {
-    display: none;
 }
 
 /* Form Styles */

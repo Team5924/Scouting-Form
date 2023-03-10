@@ -1,16 +1,33 @@
 import Compiler from "@/lib/compiler"
 
-const Auto = ({ value, eventHandler}) => {
-    const questions = [
+const Auto = ({ mobility, autoScore, autoDocked, autoEngaged, setMobility, setAutoScore, setAutoDocked, setAutoEngaged }) => {
+    const content = [
         {
-            label: '',
+            label: 'Mobility?',
+            component: 'checkbox',
+            value: mobility,
+            eventHandler: setMobility
+        },
+        {
+            label: 'Docked?',
+            component: 'checkbox',
+            value: autoDocked,
+            eventHandler: setAutoDocked
+        },
+        {
+            label: 'Engaged?',
+            component: 'checkbox',
+            value: autoEngaged,
+            eventHandler: setAutoEngaged
+        },
+        {
             component: 'coneCubeGrid',
-            value: value,
-            eventHandler: eventHandler
+            value: autoScore,
+            eventHandler: setAutoScore,
         }
     ]
 
-    const form = Compiler(questions)
+    const form = Compiler(content)
 
     return (
         <div>

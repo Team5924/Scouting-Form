@@ -1,8 +1,8 @@
 import Compiler from '@/lib/compiler'
 
-const Prematch = ({ id, match, team, alliance, setId, setMatch, setTeam, setAlliance }) => {
+const Prematch = ({ id, match, team, alliance, noShow, setId, setMatch, setTeam, setAlliance, setNoShow }) => {
 
-    const questions = [
+    const content = [
         {
             label: 'iD:',
             component: 'input',
@@ -29,10 +29,16 @@ const Prematch = ({ id, match, team, alliance, setId, setMatch, setTeam, setAlli
             component: 'alliance',
             value: alliance,
             eventHandler: setAlliance
+        },
+        {
+            label: 'Did Not Show Up?',
+            component: 'checkbox',
+            value: noShow,
+            eventHandler: setNoShow
         }
     ]
 
-    const form = Compiler(questions)
+    const form = Compiler(content)
 
     return (
         <div>
