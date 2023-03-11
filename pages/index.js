@@ -1,10 +1,10 @@
 import Head from 'next/head'
 import { useState, useRef, useEffect } from 'react'
-import Prematch from './phases/Prematch.js'
-import Auto from './phases/auto.js'
-import Teleop from './phases/teleop.js'
-import Endgame from './phases/endgame.js'
-import Summary from './phases/summary.js'
+import Prematch from '../components/Phases/prematch.js'
+import Auto from '../components/Phases/auto.js'
+import Teleop from '../components/Phases/teleop.js'
+import Endgame from '../components/Phases/endgame.js'
+import Summary from '../components/Phases/summary.js'
 
 export default function App() {
     const prematch = useRef(null)
@@ -62,7 +62,7 @@ export default function App() {
 
     /**
      * * Compiles and returns a stringified object containing all data from the form
-     * @returns {Object} data
+     * ..returns {Object} data
      */
     function parseData() {
         const data = {
@@ -86,9 +86,9 @@ export default function App() {
             'Engaged (Endgame)': parseInt(endgameEngaged)
         }
 
-        // '@p' is a placeholder later used in the Scouting App
-        console.log(JSON.stringify(data) + '@p')
-        return JSON.stringify(data) + '@p'
+        // '..p' is a placeholder later used in the Scouting App
+        console.log(JSON.stringify(data) + '..p')
+        return JSON.stringify(data) + '..p'
     }
 
     function onBack() {

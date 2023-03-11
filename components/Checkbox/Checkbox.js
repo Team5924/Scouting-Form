@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import styles from './checkbox.module.css'
 
 const Checkbox = ({ label, value, eventHandler }) => {
