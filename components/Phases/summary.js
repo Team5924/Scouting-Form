@@ -15,7 +15,7 @@ const Summary = ({ data, setData }) => {
         <div>
             <h1 className='phase-title'>SUMMARY</h1>
 
-            <div className='form' style={{ border: 'none' }}>
+            <div className='form' style={{ border: 'none', backgroundColor: '#fff' }}>
                 {data != undefined && form}
             </div>
         </div>

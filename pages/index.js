@@ -86,9 +86,9 @@ export default function App() {
             'Engaged (Endgame)': parseInt(endgameEngaged)
         }
 
-        // '..p' is a placeholder later used in the Scouting App
-        console.log(JSON.stringify(data) + '..p')
-        return JSON.stringify(data) + '..p'
+        // '@p' is a placeholder later used in the Scouting App
+        console.log(JSON.stringify(data) + ',@p')
+        return JSON.stringify(data) + ',@p'
     }
 
     function onBack() {
