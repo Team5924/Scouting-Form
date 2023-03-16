@@ -83,7 +83,8 @@ export default function App() {
             // endgame
             'Parked': park,
             'Docked (Endgame)': parseInt(endgameDocked),
-            'Engaged (Endgame)': parseInt(endgameEngaged)
+            'Engaged (Endgame)': parseInt(endgameEngaged),
+            'Type': 'qt'
         }
 
         // '@p' is a placeholder later used in the Scouting App
