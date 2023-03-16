@@ -69,8 +69,8 @@ export default function App() {
         }
 
         // '@p' is a placeholder later used in the Scouting App
-        console.log(JSON.stringify(data) + ',@p')
-        return JSON.stringify(data) + ',@p'
+        console.log(JSON.stringify(data) + ',p')
+        return JSON.stringify(data) + ',p'
     }
 
     function onBack() {
