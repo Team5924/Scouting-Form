@@ -21,17 +21,17 @@
 }
 
 body {
-    font-family: 'Fira Sans';
+    font-family: 'Fira Sans', 'Trebuchet MS';
     background-color: #333333;
     color: white;
 }
 
 input {
-    font-family: 'Fira Sans';
+    font-family: 'Fira Sans', 'Trebuchet MS';
 }
 
 .game-title {
-    font-family: 'Eras';
+    font-family: 'Eras', 'Fira Sans', 'Verdana';
     font-weight: bold;
     color: #c0362c;
     text-align: center;
@@ -40,7 +40,7 @@ input {
 }
 
 .phase-title {
-    font-family: 'Eras';
+    font-family: 'Eras', 'Fira Sans', 'Verdana';
     font-weight: bold;
     text-align: center;
     margin: 20px 0 20px 0;
@@ -63,7 +63,7 @@ input {
 }
 
 .backButton, .submitButton, .resetButton {
-    font-family: Fira Sans;
+    font-family: 'Fira Sans', 'Trebuchet';
     font-size: 12pt;
     font-weight: bold;
 }

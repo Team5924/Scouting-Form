@@ -61,6 +61,7 @@ export default function App() {
             'Match': parseInt(match),
             'Team': parseInt(team),
             'Alliance': parseInt(alliance),
+            'Pieces Dropped': parseInt(piecesDropped),
             'Defense Rating': parseInt(defense),
             'Bumpers Fell Off?': parseInt(bumpers),
             'Climb Time > 15 sec?': parseInt(climbTime),
