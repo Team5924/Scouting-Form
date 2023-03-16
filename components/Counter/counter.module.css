@@ -1,0 +1,60 @@
+.counterWrapper {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-gap: 5px;
+}
+
+.label {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+
+.counter {
+    display: flex;
+    align-items: center;
+    width: 75px;
+}
+
+.number {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 1/1;
+    width: 25px;
+    background-color: white;
+    color: black;
+    font-family: 'Fira Sans';
+    font-size: 14pt;
+    font-weight: bold;
+}
+
+.add, .subtract {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    border: none;
+    font-family: 'Fira Sans', 'Trebuchet MS';
+    font-size: 14pt;
+    font-weight: bold;
+    aspect-ratio: 1/1;
+    width: 25px;
+    padding: 0;
+}
+
+.add {
+    background-color: hsl(120, 75%, 75%);
+}
+
+.add:hover {
+    background-color: hsl(120, 35%, 60%);
+}
+
+.subtract {
+    background-color: hsl(0, 100%, 75%);
+}
+
+.subtract:hover {
+    background-color: hsl(0, 60%, 60%);
+}
