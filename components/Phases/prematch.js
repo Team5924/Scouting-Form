@@ -30,12 +30,6 @@ const Prematch = ({ id, match, team, alliance, noShow, setId, setMatch, setTeam,
             value: alliance,
             eventHandler: setAlliance
         },
-        {
-            label: 'Did Not Show Up?',
-            component: 'checkbox',
-            value: noShow,
-            eventHandler: setNoShow
-        }
     ]
 
     const form = Compiler(content)
