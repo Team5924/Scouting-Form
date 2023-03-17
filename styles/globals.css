@@ -20,6 +20,11 @@
     font-weight: bold;
 }
 
+@font-face {
+    font-family: 'Trebuchet MS';
+    src: local('Trebuchet MS');
+}
+
 body {
     font-family: 'Eras', 'Fira Sans', 'Verdana';
     background-color: #333333;
