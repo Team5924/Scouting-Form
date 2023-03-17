@@ -1,10 +1,12 @@
 import Head from 'next/head'
 import { useState, useRef, useEffect } from 'react'
 import Prematch from '../components/Phases/prematch.js'
+import Pit from '../components/Phases/pit.js'
 import Summary from '../components/Phases/summary.js'
 
 export default function App() {
     const prematch = useRef(null)
+    const pit = useRef(null)
     const summary = useRef(null)
 
     const back = useRef(null)
@@ -12,6 +14,7 @@ export default function App() {
     const reset = useRef(null)
     
     useEffect(() => {
+        // set default ref hook behaviors here
         summary.current.style.display = 'none'
         back.current.style.display = 'none'
         reset.current.style.display = 'none'
@@ -27,6 +30,7 @@ export default function App() {
             case 'form':
                 // switch to the summary
                 prematch.current.style.display = 'none'
+                pit.current.style.display = 'none'
                 summary.current.style.display = 'block'
 
                 submit.current.style.display = 'none'
@@ -37,6 +41,7 @@ export default function App() {
             case 'summary':
                 // switch to the form
                 prematch.current.style.display = 'block'
+                pit.current.style.display = 'block'
                 summary.current.style.display = 'none'
 
                 submit.current.style.display = 'block'
@@ -57,11 +62,13 @@ export default function App() {
             'Match': parseInt(match),
             'Team': parseInt(team),
             'Alliance': parseInt(alliance),
-            'Pieces Dropped': parseInt(piecesDropped),
-            'Defense Rating': parseInt(defense),
-            'Bumpers Fell Off?': parseInt(bumpers),
-            'Climb Time > 15 sec?': parseInt(climbTime),
-            'Type': 'ql'
+            'Speed (ft/sec)': parseInt(speed),
+            'Drive Train': driveTrain,
+            'Auto': auto,
+            'Climb Time': climbTime,
+            'Substation': substation,
+            'Ground Pickup or HP Station': pickup,
+            'Type': 'pit'
         }
 
         // '@p' is a placeholder later used in the Scouting App
@@ -84,10 +91,12 @@ export default function App() {
     function onReset() {
         setMatch((previousMatch) => parseInt(previousMatch) + 1)
         setTeam('')
-        setDefense(0)
-        setBumpers(0)
-        setPiecesDropped(0)
-        setClimbTime(0)
+        setSpeed('')
+        setDriveTrain('')
+        setAuto('')
+        setClimbTime('')
+        setSubstation('')
+        setPickup('')
         updatePage()
     }
 
@@ -98,6 +107,14 @@ export default function App() {
     const [match, setMatch] = useState('')
     const [team, setTeam] = useState('')
     const [alliance, setAlliance] = useState()
+
+    // ### Pit
+    const [speed, setSpeed] = useState('')
+    const [driveTrain, setDriveTrain] = useState('')
+    const [auto, setAuto] = useState('')
+    const [climbTime, setClimbTime] = useState('')
+    const [substation, setSubstation] = useState('')
+    const [pickup, setPickup] = useState('')
 
     // ### Summary
     const [data, setData] = useState()
@@ -111,13 +128,6 @@ export default function App() {
 
             <h1 className='game-title'>2023 CHARGED UP</h1>
 
-            <div ref={summary}>
-                <Summary
-                    data={data}
-                    setData={setData}
-                />
-            </div>
-
             <div ref={prematch}>
                 <Prematch
                     id={id}
@@ -128,6 +138,30 @@ export default function App() {
                     setMatch={setMatch}
                     setTeam={setTeam}
                     setAlliance={setAlliance}
+                />
+            </div>
+
+            <div ref={pit}>
+                <Pit
+                    speed={speed}
+                    driveTrain={driveTrain}
+                    auto={auto}
+                    climbTime={climbTime}
+                    substation={substation}
+                    pickup={pickup}
+                    setSpeed={setSpeed}
+                    setDriveTrain={setDriveTrain}
+                    setAuto={setAuto}
+                    setClimbTime={setClimbTime}
+                    setSubstation={setSubstation}
+                    setPickup={setPickup}
+                />
+            </div>
+
+            <div ref={summary}>
+                <Summary
+                    data={data}
+                    setData={setData}
                 />
             </div>
 
