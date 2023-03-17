@@ -54,7 +54,7 @@ input {
 .form {
     display: flex;
     flex-direction: column;
-    grid-gap: 10px;
+    grid-gap: 15px;
     border: 1px solid white;
     padding: 10px;
 }
