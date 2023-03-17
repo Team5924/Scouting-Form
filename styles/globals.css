@@ -20,8 +20,13 @@
     font-weight: bold;
 }
 
+@font-face {
+    font-family: 'Trebuchet MS';
+    src: local('Trebuchet MS');
+}
+
 body {
-    font-family: 'Fira Sans', 'Trebuchet MS';
+    font-family: 'Eras', 'Fira Sans', 'Verdana';
     background-color: #333333;
     color: white;
 }
@@ -63,7 +68,7 @@ input {
 }
 
 .backButton, .submitButton, .resetButton {
-    font-family: 'Fira Sans', 'Trebuchet';
+    font-family: 'Fira Sans';
     font-size: 12pt;
     font-weight: bold;
 }
