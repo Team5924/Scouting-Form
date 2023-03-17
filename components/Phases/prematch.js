@@ -11,13 +11,6 @@ const Prematch = ({ id, match, team, alliance, noShow, setId, setMatch, setTeam,
             eventHandler: setId
         },
         {
-            label: 'Match:',
-            component: 'input',
-            type: 'number',
-            value: match,
-            eventHandler: setMatch
-        },
-        {
             label: 'Team:',
             component: 'input',
             type: 'number',

@@ -59,7 +59,6 @@ export default function App() {
     function parseData() {
         const data = {
             'iD': parseInt(id),
-            'Match': parseInt(match),
             'Team': parseInt(team),
             'Alliance': parseInt(alliance),
             'Speed (ft/sec)': parseInt(speed),
@@ -89,7 +88,6 @@ export default function App() {
      * * Resets the form questions to their corresponding default/new value
      */
     function onReset() {
-        setMatch((previousMatch) => parseInt(previousMatch) + 1)
         setTeam('')
         setSpeed('')
         setDriveTrain('')
@@ -104,7 +102,6 @@ export default function App() {
     
     // ### Prematch
     const [id, setId] = useState('')
-    const [match, setMatch] = useState('')
     const [team, setTeam] = useState('')
     const [alliance, setAlliance] = useState()
 
@@ -131,7 +128,6 @@ export default function App() {
             <div ref={prematch}>
                 <Prematch
                     id={id}
-                    match={match}
                     team={team}
                     alliance={alliance}
                     setId={setId}
