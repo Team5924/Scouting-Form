@@ -2,12 +2,10 @@ import Head from 'next/head'
 import { useState, useRef, useEffect } from 'react'
 import Prematch from '../components/Phases/prematch.js'
 import Summary from '../components/Phases/summary.js'
-import Qualitative from '../components/Phases/qualitative.js'
 
 export default function App() {
     const prematch = useRef(null)
     const summary = useRef(null)
-    const qualitative = useRef(null)
 
     const back = useRef(null)
     const submit = useRef(null)
@@ -29,7 +27,6 @@ export default function App() {
             case 'form':
                 // switch to the summary
                 prematch.current.style.display = 'none'
-                qualitative.current.style.display = 'none'
                 summary.current.style.display = 'block'
 
                 submit.current.style.display = 'none'
@@ -40,7 +37,6 @@ export default function App() {
             case 'summary':
                 // switch to the form
                 prematch.current.style.display = 'block'
-                qualitative.current.style.display = 'block'
                 summary.current.style.display = 'none'
 
                 submit.current.style.display = 'block'
@@ -103,12 +99,6 @@ export default function App() {
     const [team, setTeam] = useState('')
     const [alliance, setAlliance] = useState()
 
-    // ### Qualitative
-    const [piecesDropped, setPiecesDropped] = useState(0)
-    const [defense, setDefense] = useState(0)
-    const [bumpers, setBumpers] = useState(0)
-    const [climbTime, setClimbTime] = useState(0)
-
     // ### Summary
     const [data, setData] = useState()
 
@@ -138,19 +128,6 @@ export default function App() {
                     setMatch={setMatch}
                     setTeam={setTeam}
                     setAlliance={setAlliance}
-                />
-            </div>
-
-            <div ref={qualitative}>
-                <Qualitative
-                    piecesDropped={piecesDropped}
-                    defense={defense}
-                    bumpers={bumpers}
-                    climbTime={climbTime}
-                    setPiecesDropped={setPiecesDropped}
-                    setDefense={setDefense}
-                    setBumpers={setBumpers}
-                    setClimbTime={setClimbTime}
                 />
             </div>
 
