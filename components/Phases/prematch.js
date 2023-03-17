@@ -1,6 +1,6 @@
 import Compiler from '@/lib/compiler'
 
-const Prematch = ({ id, match, team, alliance, noShow, setId, setMatch, setTeam, setAlliance, setNoShow }) => {
+const Prematch = ({ id, team, alliance, setId, setTeam, setAlliance}) => {
 
     const content = [
         {

@@ -131,7 +131,6 @@ export default function App() {
                     team={team}
                     alliance={alliance}
                     setId={setId}
-                    setMatch={setMatch}
                     setTeam={setTeam}
                     setAlliance={setAlliance}
                 />
