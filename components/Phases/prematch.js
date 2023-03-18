@@ -1,6 +1,6 @@
 import Compiler from '@/lib/compiler'
 
-const Prematch = ({ id, team, alliance, setId, setTeam, setAlliance}) => {
+const Prematch = ({ id, team, setId, setTeam}) => {
 
     const content = [
         {
@@ -16,12 +16,6 @@ const Prematch = ({ id, team, alliance, setId, setTeam, setAlliance}) => {
             type: 'number',
             value: team,
             eventHandler: setTeam
-        },
-        {
-            label: 'Alliance:',
-            component: 'alliance',
-            value: alliance,
-            eventHandler: setAlliance
         },
     ]
 
