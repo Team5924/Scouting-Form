@@ -60,7 +60,6 @@ export default function App() {
         const data = {
             'iD': parseInt(id),
             'Team': parseInt(team),
-            'Alliance': parseInt(alliance),
             'Speed (ft/sec)': parseInt(speed),
             'Drive Train': driveTrain,
             'Auto': auto,
@@ -71,8 +70,8 @@ export default function App() {
         }
 
         // '@p' is a placeholder later used in the Scouting App
-        console.log(JSON.stringify(data) + ',p')
-        return JSON.stringify(data) + ',p'
+        console.log(JSON.stringify(data) + ',')
+        return JSON.stringify(data) + ','
     }
 
     function onBack() {
@@ -103,7 +102,6 @@ export default function App() {
     // ### Prematch
     const [id, setId] = useState('')
     const [team, setTeam] = useState('')
-    const [alliance, setAlliance] = useState()
 
     // ### Pit
     const [speed, setSpeed] = useState('')
@@ -129,10 +127,8 @@ export default function App() {
                 <Prematch
                     id={id}
                     team={team}
-                    alliance={alliance}
                     setId={setId}
                     setTeam={setTeam}
-                    setAlliance={setAlliance}
                 />
             </div>
 
