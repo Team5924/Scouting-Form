@@ -229,6 +229,10 @@ export default function App() {
 
             <div ref={summary}>
                 <Summary
+                    id={id}
+                    match={match}
+                    team={team}
+                    alliance={alliance}
                     data={data}
                     setData={setData}
                 />
