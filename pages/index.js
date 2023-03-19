@@ -121,13 +121,6 @@ export default function App() {
 
             <h1 className='game-title'>2023 CHARGED UP</h1>
 
-            <div ref={summary}>
-                <Summary
-                    data={data}
-                    setData={setData}
-                />
-            </div>
-
             <div ref={prematch}>
                 <Prematch
                     id={id}
@@ -151,6 +144,17 @@ export default function App() {
                     setDefense={setDefense}
                     setBumpers={setBumpers}
                     setClimbTime={setClimbTime}
+                />
+            </div>
+
+            <div ref={summary}>
+                <Summary
+                    id={id}
+                    match={match}
+                    team={team}
+                    alliance={alliance}
+                    data={data}
+                    setData={setData}
                 />
             </div>
 
