@@ -3,7 +3,7 @@ import Compiler from "@/lib/compiler"
 export default function Teleop({ teleopScore, disabled, setTeleopScore, setDisabled }) {
     const content = [
         {
-            component: 'coneCubeGrid',
+            component: 'coneCubeTable',
             value: teleopScore,
             eventHandler: setTeleopScore,
         },

@@ -22,7 +22,7 @@ const Summary = ({ id, match, team, alliance, data, setData }) => {
         case 5:
             alliance_color = 'R3'
     }
-    const metadata = `ID${id}-M${match}-T${team}-${alliance_color}-QT`
+    const metadata = `ID${id}-M${match}-T${team}-${alliance_color}`
 
     const content = [
         {

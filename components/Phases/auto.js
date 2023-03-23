@@ -21,7 +21,7 @@ const Auto = ({ mobility, autoScore, autoDocked, autoEngaged, setMobility, setAu
             eventHandler: setAutoEngaged
         },
         {
-            component: 'coneCubeGrid',
+            component: 'coneCubeTable',
             value: autoScore,
             eventHandler: setAutoScore,
         }

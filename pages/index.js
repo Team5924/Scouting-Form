@@ -114,13 +114,12 @@ export default function App() {
         setAutoDocked(0)
         setAutoEngaged(0)
         handleAutoScore({
-            top: [0, 0, 0, 0, 0, 0, 0, 0, 0],
-            mid: [0, 0, 0, 0, 0, 0, 0, 0, 0],
-            botCone: [0, 0, 0, 0, 0, 0, 0, 0, 0],
-            botCube: [0, 0, 0, 0, 0, 0, 0, 0, 0]
+            top: { cones: 0, cubes: 0 },
+            mid: { cones: 0, cubes: 0 },
+            bot: { cones: 0, cubes: 0 }
         })
         // teleop
-        // * teleopScore has been reseted by 'handleAutoScore'
+        // teleopScore has been reseted by 'handleAutoScore'
         setDisabled(0)
         // endgame
         setPark(0)
@@ -143,22 +142,20 @@ export default function App() {
     const [autoDocked, setAutoDocked] = useState(0)
     const [autoEngaged, setAutoEngaged] = useState(0)
     const [autoScore, setAutoScore] = useState({
-        top: [0, 0, 0, 0, 0, 0, 0, 0, 0],
-        mid: [0, 0, 0, 0, 0, 0, 0, 0, 0],
-        botCone: [0, 0, 0, 0, 0, 0, 0, 0, 0],
-        botCube: [0, 0, 0, 0, 0, 0, 0, 0, 0]
+        top: { cones: 0, cubes: 0 },
+        mid: { cones: 0, cubes: 0 },
+        bot: { cones: 0, cubes: 0 }
     });
-    const handleAutoScore = (score) => {
+    function handleAutoScore(score) {
         setAutoScore(score)
         setTeleopScore(score)
     }
     
     // ### Teleop 
     const [teleopScore, setTeleopScore] = useState({
-        top: [0, 0, 0, 0, 0, 0, 0, 0, 0],
-        mid: [0, 0, 0, 0, 0, 0, 0, 0, 0],
-        botCone: [0, 0, 0, 0, 0, 0, 0, 0, 0],
-        botCube: [0, 0, 0, 0, 0, 0, 0, 0, 0]
+        top: { cones: 0, cubes: 0 },
+        mid: { cones: 0, cubes: 0 },
+        bot: { cones: 0, cubes: 0 }
     });
     const [disabled, setDisabled] = useState(0)
 

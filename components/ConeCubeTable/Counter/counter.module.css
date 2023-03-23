@@ -4,12 +4,6 @@
     grid-gap: 5px;
 }
 
-.label {
-    display: flex;
-    justify-content: right;
-    align-items: center;
-}
-
 .counter {
     display: flex;
     justify-content: center;
