@@ -123,35 +123,33 @@ export default function App() {
      * ..returns {Object} data
      */
     function parseData() {
-        const data = {
+        const data = [
             // prematch
-            'iD': parseInt(id),
-            'Match': parseInt(match),
-            'Team': parseInt(team),
-            'Alliance': parseInt(alliance),
-            'No Show': parseInt(noShow),
+            parseInt(id),
+            parseInt(match),
+            parseInt(team),
+            parseInt(noShow),
             // auto
-            'Mobility': parseInt(mobility),
-            'Docked (Auto)': parseInt(autoDocked),
-            'Engaged (Auto)': parseInt(autoEngaged),
-            'Score (Auto)': autoScore,
+            parseInt(mobility),
+            parseInt(autoDocked),
+            parseInt(autoEngaged),
+            parseInt(autoScore),
             // teleop
-            'Score (Total)': teleopScore,
-            'Links': parseInt(links),
-            'Pieces Dropped': parseInt(piecesDropped),
-            'Status': status,
-            'Defense': defense,
+            parseInt(teleopScore),
+            parseInt(links),
+            parseInt(piecesDropped),
+            status,
+            defense,
             // endgame
-            'Parked': park,
-            'Docked (Endgame)': parseInt(endgameDocked),
-            'Engaged (Endgame)': parseInt(endgameEngaged),
-            // misc
-            'Notes': notes
-        }
+            park,
+            parseInt(endgameDocked),
+            parseInt(endgameEngaged),
+            // notes
+            notes
+        ]
 
-        // '@p' is a placeholder later used in the Scouting App
-        console.log(JSON.stringify(data) + ',')
-        return JSON.stringify(data) + ','
+        console.log('[' + data.toString() + ']' + ',')
+        return '[' + data.toString() + ']' + ','
     }
 
     /**
