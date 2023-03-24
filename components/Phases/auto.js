@@ -24,7 +24,7 @@ const Auto = ({ mobility, autoScore, autoDocked, autoEngaged, setMobility, setAu
             component: 'coneCubeTable',
             value: autoScore,
             eventHandler: setAutoScore,
-        }
+        }   
     ]
 
     const form = Compiler(content)

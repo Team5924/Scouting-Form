@@ -1,6 +1,6 @@
 import Compiler from "@/lib/compiler"
 
-export default function Teleop({ teleopScore, disabled, setTeleopScore, setDisabled }) {
+export default function Teleop({ teleopScore, links, piecesDropped, status, defense, setTeleopScore, setLinks, setPiecesDropped, setStatus, setDefense }) {
     const content = [
         {
             component: 'coneCubeTable',
@@ -8,10 +8,44 @@ export default function Teleop({ teleopScore, disabled, setTeleopScore, setDisab
             eventHandler: setTeleopScore,
         },
         {
-            label: 'Disabled?',
-            component: 'checkbox',
-            value: disabled,
-            eventHandler: setDisabled
+            label: 'Alliance Links:',
+            component: 'counter',
+            maxValue: 5,
+            value: links,
+            eventHandler: setLinks
+        },
+        {
+            label: 'Pieces Dropped:',
+            component: 'counter',
+            maxValue: piecesDropped + 1, // this just means no max value
+            value: piecesDropped,
+            eventHandler: setPiecesDropped
+        },
+        {
+            label: 'Overall Status:',
+            component: 'radioList',
+            options: [
+                'Operational',
+                'Damaged',
+                'Immobile',
+                'Totaled'
+            ],
+            value: status,
+            eventHandler: setStatus
+        },
+        {
+            label: 'Defense Rating:',
+            component: 'radioList',
+            options: [
+                'N/A',
+                '1 (Terrible)',
+                2,
+                3,
+                4,
+                '5 (Amazing)'
+            ],
+            value: defense,
+            eventHandler: setDefense
         }
     ]
 

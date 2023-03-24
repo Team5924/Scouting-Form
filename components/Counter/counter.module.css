@@ -52,10 +52,18 @@
     background-color: hsl(120, 35%, 60%);
 }
 
+.add:active {
+    background-color: hsl(120, 75%, 75%);
+}
+
 .subtract {
     background-color: hsl(0, 100%, 75%);
 }
 
 .subtract:hover {
     background-color: hsl(0, 60%, 60%);
+}
+
+.subtract:active {
+    background-color: hsl(0, 100%, 75%);
 }

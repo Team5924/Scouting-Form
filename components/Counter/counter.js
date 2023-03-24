@@ -1,12 +1,12 @@
 import styles from './counter.module.css'
 
-const Counter = ({ label, value, eventHandler }) => {
+const Counter = ({ label, maxValue, value, eventHandler }) => {
     function onAdd() {
-        eventHandler((previousValue) => parseInt(previousValue) + 1)       
+        if (value < maxValue) eventHandler((previousValue) => parseInt(previousValue) + 1)       
     }
 
     function onSubtract() {
-        if (value != 0) eventHandler((previousValue => parseInt(previousValue) - 1))
+        if (value > 0) eventHandler((previousValue => parseInt(previousValue) - 1))
     }
 
     return (

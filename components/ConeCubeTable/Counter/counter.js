@@ -1,15 +1,8 @@
 import styles from './counter.module.css'
 
 const Counter = ({ loc, value, eventHandler }) => {
-    function onAdd() {
-        // eventHandler((previousValue) => parseInt(previousValue) + 1) 
-        eventHandler(loc, 'add')
-    }
-
-    function onSubtract() {
-        // if (value != 0) eventHandler((previousValue => parseInt(previousValue) - 1))
-        eventHandler(loc, 'subtract')
-    }
+    const onAdd = _ => eventHandler(loc, 'add')
+    const onSubtract = _ => eventHandler(loc, 'subtract')
 
     return (
         <div className={styles.counterWrapper}>

@@ -4,6 +4,7 @@ import Prematch from '../components/Phases/prematch.js'
 import Auto from '../components/Phases/auto.js'
 import Teleop from '../components/Phases/teleop.js'
 import Endgame from '../components/Phases/endgame.js'
+import Misc from '../components/Phases/misc.js'
 import Summary from '../components/Phases/summary.js'
 
 export default function App() {
@@ -11,6 +12,7 @@ export default function App() {
     const auto = useRef(null)
     const teleop = useRef(null)
     const endgame = useRef(null)
+    const misc = useRef(null)
     const summary = useRef(null)
 
     const back = useRef(null)
@@ -35,6 +37,7 @@ export default function App() {
                 auto.current.style.display = 'none'
                 teleop.current.style.display = 'none'
                 endgame.current.style.display = 'none'
+                misc.current.style.display = 'none'
                 // switch to the summary
                 summary.current.style.display = 'block'
 
@@ -48,6 +51,7 @@ export default function App() {
                 auto.current.style.display = 'block'
                 teleop.current.style.display = 'block'
                 endgame.current.style.display = 'block'
+                misc.current.style.display = 'block'
 
                 // switch to the form
                 summary.current.style.display = 'none'
@@ -60,71 +64,12 @@ export default function App() {
         }
     }
 
-    /**
-     * * Compiles and returns a stringified object containing all data from the form
-     * ..returns {Object} data
-     */
-    function parseData() {
-        const data = {
-            // prematch
-            'iD': parseInt(id),
-            'Match': parseInt(match),
-            'Team': parseInt(team),
-            'Alliance': parseInt(alliance),
-            'No Show': parseInt(noShow),
-            // auto
-            'Mobility': parseInt(mobility),
-            'Docked (Auto)': parseInt(autoDocked),
-            'Engaged (Auto)': parseInt(autoEngaged),
-            'Score (Auto)': autoScore,
-            // teleop
-            'Score (Total)': teleopScore,
-            'Disabled': parseInt(disabled),
-            // endgame
-            'Parked': park,
-            'Docked (Endgame)': parseInt(endgameDocked),
-            'Engaged (Endgame)': parseInt(endgameEngaged),
-            'Type': 'qt'
-        }
-
-        // '@p' is a placeholder later used in the Scouting App
-        console.log(JSON.stringify(data) + ',')
-        return JSON.stringify(data) + ','
-    }
-
     function onBack() {
         updatePage()
     }
 
     function onSubmit() {
         setData(parseData())
-        updatePage()
-    }
-
-    /**
-     * * Resets the form questions to their corresponding default/new value
-     */
-    function onReset() {
-        // prematch
-        setMatch((previousMatch) => parseInt(previousMatch) + 1)
-        setTeam('')
-        setNoShow(0)
-        // auto
-        setMobility(0)
-        setAutoDocked(0)
-        setAutoEngaged(0)
-        handleAutoScore({
-            top: { cones: 0, cubes: 0 },
-            mid: { cones: 0, cubes: 0 },
-            bot: { cones: 0, cubes: 0 }
-        })
-        // teleop
-        // teleopScore has been reseted by 'handleAutoScore'
-        setDisabled(0)
-        // endgame
-        setPark(0)
-        setEndgameDocked(0)
-        setEndgameEngaged(0)
         updatePage()
     }
 
@@ -157,15 +102,88 @@ export default function App() {
         mid: { cones: 0, cubes: 0 },
         bot: { cones: 0, cubes: 0 }
     });
-    const [disabled, setDisabled] = useState(0)
+    const [links, setLinks] = useState(0)
+    const [piecesDropped, setPiecesDropped] = useState(0)
+    const [status, setStatus] = useState('Operational')
+    const [defense, setDefense] = useState('N/A')
 
     // ### Endgame 
     const [park, setPark] = useState(0)
     const [endgameDocked, setEndgameDocked] = useState(0)
     const [endgameEngaged, setEndgameEngaged] = useState(0)
 
+    // ### Misc
+    const [notes, setNotes] = useState('')
+
     // ### Summary
     const [data, setData] = useState()
+
+    /**
+     * * Compiles and returns a stringified object containing all data from the form
+     * ..returns {Object} data
+     */
+    function parseData() {
+        const data = {
+            // prematch
+            'iD': parseInt(id),
+            'Match': parseInt(match),
+            'Team': parseInt(team),
+            'Alliance': parseInt(alliance),
+            'No Show': parseInt(noShow),
+            // auto
+            'Mobility': parseInt(mobility),
+            'Docked (Auto)': parseInt(autoDocked),
+            'Engaged (Auto)': parseInt(autoEngaged),
+            'Score (Auto)': autoScore,
+            // teleop
+            'Score (Total)': teleopScore,
+            'Links': parseInt(links),
+            'Pieces Dropped': parseInt(piecesDropped),
+            'Status': status,
+            'Defense': defense,
+            // endgame
+            'Parked': park,
+            'Docked (Endgame)': parseInt(endgameDocked),
+            'Engaged (Endgame)': parseInt(endgameEngaged),
+            // misc
+            'Notes': notes
+        }
+
+        // '@p' is a placeholder later used in the Scouting App
+        console.log(JSON.stringify(data) + ',')
+        return JSON.stringify(data) + ','
+    }
+
+    /**
+     * * Resets the form questions to their corresponding default/new value
+     */
+    function onReset() {
+        // prematch
+        setMatch((previousMatch) => parseInt(previousMatch) + 1)
+        setTeam('')
+        setNoShow(0)
+        // auto
+        setMobility(0)
+        setAutoDocked(0)
+        setAutoEngaged(0)
+        handleAutoScore({
+            top: { cones: 0, cubes: 0 },
+            mid: { cones: 0, cubes: 0 },
+            bot: { cones: 0, cubes: 0 }
+        })
+        // teleop
+        setLinks(0)
+        setPiecesDropped(0)
+        setStatus('Operational')
+        setDefense('N/A')
+        // endgame
+        setPark(0)
+        setEndgameDocked(0)
+        setEndgameEngaged(0)
+        // misc
+        setNotes('')
+        updatePage()
+    }
 
     return (
         <>
@@ -207,9 +225,15 @@ export default function App() {
             <div ref={teleop}>
                 <Teleop
                     teleopScore={teleopScore}
-                    disabled={disabled}
+                    links={links}
+                    piecesDropped={piecesDropped}
+                    status={status}
+                    defense={defense}
                     setTeleopScore={setTeleopScore}
-                    setDisabled={setDisabled}
+                    setLinks={setLinks}
+                    setPiecesDropped={setPiecesDropped}
+                    setStatus={setStatus}
+                    setDefense={setDefense}
                 />
             </div>
 
@@ -221,6 +245,13 @@ export default function App() {
                     setPark={setPark}
                     setEndgameDocked={setEndgameDocked}
                     setEndgameEngaged={setEndgameEngaged}
+                />
+            </div>
+
+            <div ref={misc}>
+                <Misc
+                    notes={notes}
+                    setNotes={setNotes}
                 />
             </div>
 

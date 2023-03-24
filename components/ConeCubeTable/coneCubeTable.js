@@ -117,7 +117,7 @@ const ConeCubeTable = ({ value, eventHandler }) => {
     */
     function addBot(type) {
         if (type == 'cones') {
-            if (value.bot.cones < 6)
+            if (value.bot.cones + value.bot.cubes < 9)
                 eventHandler((previousValue) => ({
                     ...previousValue,
                     bot: {
@@ -127,7 +127,7 @@ const ConeCubeTable = ({ value, eventHandler }) => {
                 }))         
         }
         if (type == 'cubes') {
-            if (value.bot.cubes < 3)
+            if (value.bot.cones + value.bot.cubes < 9)
                 eventHandler((previousValue) => ({
                     ...previousValue,
                     bot: {
