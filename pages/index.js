@@ -80,7 +80,7 @@ export default function App() {
     const [match, setMatch] = useState('')
     const [team, setTeam] = useState('')
     const [alliance, setAlliance] = useState()
-    const [noShow, setNoShow] = useState(0)
+    const [attendance, setAttendance] = useState(1)
 
     // ### Auto
     const [mobility, setMobility] = useState(0)
@@ -129,7 +129,7 @@ export default function App() {
             'match': parseInt(match),
             'team': parseInt(team),
             'alliance': parseInt(alliance),
-            'noShow': parseInt(noShow),
+            'attendance': parseInt(attendance),
             // auto
             'mobility': parseInt(mobility),
             'autoDocked': parseInt(autoDocked),
@@ -160,7 +160,7 @@ export default function App() {
         // prematch
         setMatch((previousMatch) => parseInt(previousMatch) + 1)
         setTeam('')
-        setNoShow(0)
+        setAttendance(1)
         // auto
         setMobility(0)
         setAutoDocked(0)
@@ -199,12 +199,12 @@ export default function App() {
                     match={match}
                     team={team}
                     alliance={alliance}
-                    noShow={noShow}
+                    attendance={attendance}
                     setId={setId}
                     setMatch={setMatch}
                     setTeam={setTeam}
                     setAlliance={setAlliance}
-                    setNoShow={setNoShow}
+                    setAttendance={setAttendance}
                 />
             </div>
 

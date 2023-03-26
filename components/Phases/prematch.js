@@ -1,6 +1,6 @@
 import Compiler from '@/lib/compiler'
 
-const Prematch = ({ id, match, team, alliance, noShow, setId, setMatch, setTeam, setAlliance, setNoShow }) => {
+const Prematch = ({ id, match, team, alliance, attendance, setId, setMatch, setTeam, setAlliance, setAttendance }) => {
 
     const content = [
         {
@@ -31,10 +31,10 @@ const Prematch = ({ id, match, team, alliance, noShow, setId, setMatch, setTeam,
             eventHandler: setAlliance
         },
         {
-            label: 'Did Not Show Up?',
+            label: 'Present?',
             component: 'checkbox',
-            value: noShow,
-            eventHandler: setNoShow
+            value: attendance,
+            eventHandler: setAttendance
         }
     ]
 
