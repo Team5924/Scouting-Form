@@ -133,9 +133,9 @@ export default function App() {
             'mobility': parseInt(mobility),
             'autoDocked': parseInt(autoDocked),
             'autoEngaged': parseInt(autoEngaged),
-            'autoScore': parseInt(autoScore),
+            'autoScore': autoScore,
             // teleop
-            'teleopScore': parseInt(teleopScore),
+            'teleopScore': teleopScore,
             'links': parseInt(links),
             'piecesDropped': parseInt(piecesDropped),
             'status': status,
