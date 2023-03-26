@@ -128,6 +128,7 @@ export default function App() {
             'id': parseInt(id),
             'match': parseInt(match),
             'team': parseInt(team),
+            'alliance': parseInt(alliance),
             'noShow': parseInt(noShow),
             // auto
             'mobility': parseInt(mobility),
