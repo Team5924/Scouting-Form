@@ -123,33 +123,33 @@ export default function App() {
      * ..returns {Object} data
      */
     function parseData() {
-        const data = [
+        const data = {
             // prematch
-            parseInt(id),
-            parseInt(match),
-            parseInt(team),
-            parseInt(noShow),
+            'id': parseInt(id),
+            'match': parseInt(match),
+            'team': parseInt(team),
+            'noShow': parseInt(noShow),
             // auto
-            parseInt(mobility),
-            parseInt(autoDocked),
-            parseInt(autoEngaged),
-            parseInt(autoScore),
+            'mobility': parseInt(mobility),
+            'autoDocked': parseInt(autoDocked),
+            'autoEngaged': parseInt(autoEngaged),
+            'autoScore': parseInt(autoScore),
             // teleop
-            parseInt(teleopScore),
-            parseInt(links),
-            parseInt(piecesDropped),
-            status,
-            defense,
+            'teleopScore': parseInt(teleopScore),
+            'links': parseInt(links),
+            'piecesDropped': parseInt(piecesDropped),
+            'status': status,
+            'defense': defense,
             // endgame
-            park,
-            parseInt(endgameDocked),
-            parseInt(endgameEngaged),
-            // notes
-            notes
-        ]
+            'park': park,
+            'endgameDocked': parseInt(endgameDocked),
+            'endgameEngaged': parseInt(endgameEngaged),
+            // misc
+            'notes': notes
+        }
 
-        console.log('[' + data.toString() + ']' + ',')
-        return '[' + data.toString() + ']' + ','
+        console.log(JSON.stringify(data) + ',')
+        return JSON.stringify(data) + ','
     }
 
     /**
