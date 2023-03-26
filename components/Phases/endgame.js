@@ -1,12 +1,12 @@
 import Compiler from "@/lib/compiler"
 
-const Endgame = ({ park, endgameDocked, endgameEngaged, setPark, setEndgameDocked, setEndgameEngaged }) => {
+const Endgame = ({ parked, endgameDocked, endgameEngaged, setParked, setEndgameDocked, setEndgameEngaged }) => {
     const content = [
         {
             label: 'Parked?',
             component: 'checkbox',
-            value: park,
-            eventHandler: setPark
+            value: parked,
+            eventHandler: setParked
         },
         {
             label: 'Docked?',

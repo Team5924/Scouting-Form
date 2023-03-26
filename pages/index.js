@@ -108,7 +108,7 @@ export default function App() {
     const [defense, setDefense] = useState('N/A')
 
     // ### Endgame 
-    const [park, setPark] = useState(0)
+    const [parked, setParked] = useState(0)
     const [endgameDocked, setEndgameDocked] = useState(0)
     const [endgameEngaged, setEndgameEngaged] = useState(0)
 
@@ -141,7 +141,7 @@ export default function App() {
             'status': status,
             'defense': defense,
             // endgame
-            'park': park,
+            'parked': parked,
             'endgameDocked': parseInt(endgameDocked),
             'endgameEngaged': parseInt(endgameEngaged),
             // misc
@@ -175,7 +175,7 @@ export default function App() {
         setStatus('Operational')
         setDefense('N/A')
         // endgame
-        setPark(0)
+        setParked(0)
         setEndgameDocked(0)
         setEndgameEngaged(0)
         // misc
@@ -237,10 +237,10 @@ export default function App() {
 
             <div ref={endgame}>
                 <Endgame
-                    park={park}
+                    parked={parked}
                     endgameDocked={endgameDocked}
                     endgameEngaged={endgameEngaged}
-                    setPark={setPark}
+                    setParked={setParked}
                     setEndgameDocked={setEndgameDocked}
                     setEndgameEngaged={setEndgameEngaged}
                 />
