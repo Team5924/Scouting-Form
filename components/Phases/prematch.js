@@ -31,7 +31,7 @@ const Prematch = ({ id, match, team, alliance, attendance, setId, setMatch, setT
             eventHandler: setAlliance
         },
         {
-            label: 'Present?',
+            label: 'Present This Match?',
             component: 'checkbox',
             value: attendance,
             eventHandler: setAttendance
