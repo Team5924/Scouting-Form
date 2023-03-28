@@ -1,6 +1,6 @@
 import Compiler from "@/lib/compiler"
 
-export default function Teleop({ teleopScore, links, piecesDropped, status, defense, setTeleopScore, setLinks, setPiecesDropped, setStatus, setDefense }) {
+export default function Teleop({ teleopScore, links, piecesDropped, status, defense, sabotage, setTeleopScore, setLinks, setPiecesDropped, setStatus, setDefense, setSabotage }) {
     const content = [
         {
             component: 'coneCubeTable',
@@ -46,7 +46,13 @@ export default function Teleop({ teleopScore, links, piecesDropped, status, defe
             ],
             value: defense,
             eventHandler: setDefense
-        }
+        },
+        {
+            label: 'Sabotage Team/Helped Enemy Team? (Elaborate)',
+            component: 'checkbox',
+            value: sabotage,
+            eventHandler: setSabotage
+        },
     ]
 
     const form = Compiler(content)

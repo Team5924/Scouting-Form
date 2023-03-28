@@ -106,6 +106,7 @@ export default function App() {
     const [piecesDropped, setPiecesDropped] = useState(0)
     const [status, setStatus] = useState('Operational')
     const [defense, setDefense] = useState('N/A')
+    const [sabotage, setSabotage] = useState(0)
 
     // ### Endgame 
     const [parked, setParked] = useState(0)
@@ -141,6 +142,7 @@ export default function App() {
             'piecesDropped': parseInt(piecesDropped),
             'status': status,
             'defense': defense,
+            'sabotage': sabotage,
             // endgame
             'parked': parked,
             'endgameDocked': parseInt(endgameDocked),
@@ -175,6 +177,7 @@ export default function App() {
         setPiecesDropped(0)
         setStatus('Operational')
         setDefense('N/A')
+        setSabotage(0)
         // endgame
         setParked(0)
         setEndgameDocked(0)
@@ -228,11 +231,13 @@ export default function App() {
                     piecesDropped={piecesDropped}
                     status={status}
                     defense={defense}
+                    sabotage={sabotage}
                     setTeleopScore={setTeleopScore}
                     setLinks={setLinks}
                     setPiecesDropped={setPiecesDropped}
                     setStatus={setStatus}
                     setDefense={setDefense}
+                    setSabotage={setSabotage}
                 />
             </div>
 
