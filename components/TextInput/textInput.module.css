@@ -17,7 +17,6 @@
 .input > input[type=text], .input > input[type=number] {
     width: 50px;
     text-align: left;
-    border-radius: 5px;
 }
 
 .input > input[type=checkbox] {

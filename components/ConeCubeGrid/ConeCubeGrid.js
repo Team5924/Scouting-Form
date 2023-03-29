@@ -1,7 +1,7 @@
-import styles from './ConeCubeGrid.module.css'
-import Cone from './Cone.js'
-import Cube from './Cube.js'
-import Checkbox from './Checkbox/Checkbox.js'
+import styles from './coneCubeGrid.module.css'
+import Cone from './cone.js'
+import Cube from './cube.js'
+import Checkbox from './Checkbox/checkbox.js'
 
 const ConeCubeGrid = ({ value, eventHandler }) => {
     const labels = [

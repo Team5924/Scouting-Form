@@ -1,6 +1,6 @@
 import Compiler from '@/lib/compiler'
 
-const Prematch = ({ id, team, setId, setTeam}) => {
+const Prematch = ({ id, team, setId, setTeam }) => {
 
     const content = [
         {
@@ -16,7 +16,7 @@ const Prematch = ({ id, team, setId, setTeam}) => {
             type: 'number',
             value: team,
             eventHandler: setTeam
-        },
+        }
     ]
 
     const form = Compiler(content)

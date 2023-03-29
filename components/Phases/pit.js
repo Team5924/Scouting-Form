@@ -1,6 +1,6 @@
 import Compiler from '@/lib/compiler.js'
 
-const Pit = ({ speed, driveTrain, auto, climbTime, substation, pickup, setSpeed, setDriveTrain, setAuto, setClimbTime, setSubstation, setPickup }) => {
+const Pit = ({ speed, driveTrain, auto, climbTime, substation, pickup, pieces, setSpeed, setDriveTrain, setAuto, setClimbTime, setSubstation, setPickup, setPieces }) => {
     const questions = [
         {
             label: 'Speed (ft/sec):',
@@ -17,7 +17,7 @@ const Pit = ({ speed, driveTrain, auto, climbTime, substation, pickup, setSpeed,
             eventHandler: setDriveTrain
         },
         {
-            label: 'Auto',
+            label: 'Most Consistent Auto',
             component: 'radioList',
             options: ['Mobility', 'Docked & Engaged', 'Place Game Pieces', 'No Auto'],
             value: auto,
@@ -43,6 +43,13 @@ const Pit = ({ speed, driveTrain, auto, climbTime, substation, pickup, setSpeed,
             options: ['Ground Pickup', 'HP Station', 'Both'],
             value: pickup,
             eventHandler: setPickup
+        },
+        {
+            label: 'Cones or Cubes?',
+            component: 'radioList',
+            options: ['Cones', 'Cubes', 'Both'],
+            value: pieces,
+            eventHandler: setPieces
         }
     ]
 

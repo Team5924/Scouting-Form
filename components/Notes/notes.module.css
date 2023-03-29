@@ -1,0 +1,14 @@
+.notesWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    grid-gap: 5px;
+}
+
+.textarea {
+    font-family: 'Fira Sans', 'Trebuchet MS', 'Verdana';
+    font-size: 10pt;
+    aspect-ratio: 2/1;
+    width: 200px;
+}

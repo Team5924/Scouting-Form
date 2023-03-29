@@ -110,6 +110,7 @@ export default function App() {
     const [climbTime, setClimbTime] = useState('')
     const [substation, setSubstation] = useState('')
     const [pickup, setPickup] = useState('')
+    const [pieces, setPieces] = useState('')
 
     // ### Summary
     const [data, setData] = useState()
@@ -140,12 +141,14 @@ export default function App() {
                     climbTime={climbTime}
                     substation={substation}
                     pickup={pickup}
+                    pieces={pieces}
                     setSpeed={setSpeed}
                     setDriveTrain={setDriveTrain}
                     setAuto={setAuto}
                     setClimbTime={setClimbTime}
                     setSubstation={setSubstation}
                     setPickup={setPickup}
+                    setPieces={setPieces}
                 />
             </div>
 
