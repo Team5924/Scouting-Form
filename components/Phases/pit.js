@@ -1,6 +1,6 @@
 import Compiler from '@/lib/compiler.js'
 
-const Pit = ({ speed, driveTrain, auto, climbTime, substation, pickup, pieces, setSpeed, setDriveTrain, setAuto, setClimbTime, setSubstation, setPickup, setPieces }) => {
+const Pit = ({ speed, drivetrain, auto, climbTime, substation, pickup, pieces, setSpeed, setDrivetrain, setAuto, setClimbTime, setSubstation, setPickup, setPieces }) => {
     const questions = [
         {
             label: 'Speed (ft/sec):',
@@ -13,8 +13,8 @@ const Pit = ({ speed, driveTrain, auto, climbTime, substation, pickup, pieces, s
             label: 'Drive Train:',
             component: 'radioList',
             options: ['Tank', 'Swerve', 'Omni', 'Mecanum'],
-            value: driveTrain,
-            eventHandler: setDriveTrain
+            value: drivetrain,
+            eventHandler: setDrivetrain
         },
         {
             label: 'Most Consistent Auto',

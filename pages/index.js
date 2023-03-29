@@ -58,18 +58,17 @@ export default function App() {
      */
     function parseData() {
         const data = {
-            'iD': parseInt(id),
-            'Team': parseInt(team),
-            'Speed (ft/sec)': parseInt(speed),
-            'Drive Train': driveTrain,
-            'Auto': auto,
-            'Climb Time': climbTime,
-            'Substation': substation,
-            'Ground Pickup or HP Station': pickup,
-            'Type': 'pit'
+            'id': parseInt(id),
+            'team': parseInt(team),
+            'speed': parseInt(speed),
+            'drivetrain': drivetrain,
+            'auto': auto,
+            'climbTime': climbTime,
+            'substation': substation,
+            'pickup': pickup,
+            'pieces': pieces
         }
 
-        // '@p' is a placeholder later used in the Scouting App
         console.log(JSON.stringify(data) + ',')
         return JSON.stringify(data) + ','
     }
@@ -94,6 +93,7 @@ export default function App() {
         setClimbTime('')
         setSubstation('')
         setPickup('')
+        setPieces('')
         updatePage()
     }
 
@@ -105,7 +105,7 @@ export default function App() {
 
     // ### Pit
     const [speed, setSpeed] = useState('')
-    const [driveTrain, setDriveTrain] = useState('')
+    const [drivetrain, setDrivetrain] = useState('')
     const [auto, setAuto] = useState('')
     const [climbTime, setClimbTime] = useState('')
     const [substation, setSubstation] = useState('')
@@ -136,14 +136,14 @@ export default function App() {
             <div ref={pit}>
                 <Pit
                     speed={speed}
-                    driveTrain={driveTrain}
+                    drivetrain={drivetrain}
                     auto={auto}
                     climbTime={climbTime}
                     substation={substation}
                     pickup={pickup}
                     pieces={pieces}
                     setSpeed={setSpeed}
-                    setDriveTrain={setDriveTrain}
+                    setDrivetrain={setDrivetrain}
                     setAuto={setAuto}
                     setClimbTime={setClimbTime}
                     setSubstation={setSubstation}
