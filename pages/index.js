@@ -2,7 +2,7 @@ import Head from 'next/head'
 import { useState, useRef, useEffect } from 'react'
 import Prematch from '@/components/Phases/prematch.js'
 import Pit from '@/components/Phases/pit.js'
-import Misc from '@/components/Misc/misc.js'
+import Misc from '@/components/Phases/misc.js'
 import Summary from '@/components/Phases/summary.js'
 
 export default function App() {
@@ -164,7 +164,7 @@ export default function App() {
             <div ref={misc}>
                 <Misc
                     notes={notes}
-                    setNotes={notes}
+                    setNotes={setNotes}
                 />
             </div>
 
