@@ -1,12 +1,14 @@
 import Head from 'next/head'
 import { useState, useRef, useEffect } from 'react'
-import Prematch from '../components/Phases/prematch.js'
-import Pit from '../components/Phases/pit.js'
-import Summary from '../components/Phases/summary.js'
+import Prematch from '@/components/Phases/prematch.js'
+import Pit from '@/components/Phases/pit.js'
+import Misc from '@/components/Misc/misc.js'
+import Summary from '@/components/Phases/summary.js'
 
 export default function App() {
     const prematch = useRef(null)
     const pit = useRef(null)
+    const misc = useRef(null)
     const summary = useRef(null)
 
     const back = useRef(null)
@@ -31,6 +33,7 @@ export default function App() {
                 // switch to the summary
                 prematch.current.style.display = 'none'
                 pit.current.style.display = 'none'
+                misc.current.style.display = 'none'
                 summary.current.style.display = 'block'
 
                 submit.current.style.display = 'none'
@@ -42,6 +45,7 @@ export default function App() {
                 // switch to the form
                 prematch.current.style.display = 'block'
                 pit.current.style.display = 'block'
+                misc.current.style.display = 'block'
                 summary.current.style.display = 'none'
 
                 submit.current.style.display = 'block'
@@ -66,7 +70,8 @@ export default function App() {
             'climbTime': climbTime,
             'substation': substation,
             'pickup': pickup,
-            'pieces': pieces
+            'pieces': pieces,
+            'notes': notes
         }
 
         console.log(JSON.stringify(data) + ',')
@@ -94,6 +99,7 @@ export default function App() {
         setSubstation('')
         setPickup('')
         setPieces('')
+        setNotes('')
         updatePage()
     }
 
@@ -111,6 +117,9 @@ export default function App() {
     const [substation, setSubstation] = useState('')
     const [pickup, setPickup] = useState('')
     const [pieces, setPieces] = useState('')
+
+    // ### Misc
+    const [notes, setNotes] = useState('')
 
     // ### Summary
     const [data, setData] = useState()
@@ -149,6 +158,13 @@ export default function App() {
                     setSubstation={setSubstation}
                     setPickup={setPickup}
                     setPieces={setPieces}
+                />
+            </div>
+
+            <div ref={misc}>
+                <Misc
+                    notes={notes}
+                    setNotes={notes}
                 />
             </div>
 
