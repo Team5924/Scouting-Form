@@ -88,7 +88,7 @@ export default function App() {
     function onReset() {
         setTeam('')
         setSpeed('')
-        setDriveTrain('')
+        setDrivetrain('')
         setAuto('')
         setClimbTime('')
         setSubstation('')
@@ -154,6 +154,8 @@ export default function App() {
 
             <div ref={summary}>
                 <Summary
+                    id={id}
+                    team={team}
                     data={data}
                     setData={setData}
                 />
