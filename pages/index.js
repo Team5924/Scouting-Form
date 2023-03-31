@@ -93,11 +93,11 @@ export default function App() {
     });
     function handleAutoScore(score) {
         setAutoScore(score)
-        setTeleopScore(score)
+        setTotalScore(score)
     }
     
     // ### Teleop 
-    const [teleopScore, setTeleopScore] = useState({
+    const [totalScore, setTotalScore] = useState({
         top: { cones: 0, cubes: 0 },
         mid: { cones: 0, cubes: 0 },
         bot: { cones: 0, cubes: 0 }
@@ -137,7 +137,7 @@ export default function App() {
             'autoEngaged': parseInt(autoEngaged),
             'autoScore': autoScore,
             // teleop
-            'teleopScore': teleopScore,
+            'totalScore': totalScore,
             'links': parseInt(links),
             'piecesDropped': parseInt(piecesDropped),
             'status': status,
@@ -226,13 +226,13 @@ export default function App() {
 
             <div ref={teleop}>
                 <Teleop
-                    teleopScore={teleopScore}
+                    totalScore={totalScore}
                     links={links}
                     piecesDropped={piecesDropped}
                     status={status}
                     defense={defense}
                     sabotage={sabotage}
-                    setTeleopScore={setTeleopScore}
+                    setTotalScore={setTotalScore}
                     setLinks={setLinks}
                     setPiecesDropped={setPiecesDropped}
                     setStatus={setStatus}

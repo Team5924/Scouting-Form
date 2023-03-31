@@ -1,11 +1,11 @@
 import Compiler from "@/lib/compiler"
 
-export default function Teleop({ teleopScore, links, piecesDropped, status, defense, sabotage, setTeleopScore, setLinks, setPiecesDropped, setStatus, setDefense, setSabotage }) {
+export default function Teleop({ totalScore, links, piecesDropped, status, defense, sabotage, setTotalScore, setLinks, setPiecesDropped, setStatus, setDefense, setSabotage }) {
     const content = [
         {
             component: 'coneCubeTable',
-            value: teleopScore,
-            eventHandler: setTeleopScore,
+            value: totalScore,
+            eventHandler: setTotalScore,
         },
         {
             label: 'Alliance Links:',
