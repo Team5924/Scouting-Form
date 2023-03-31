@@ -1,0 +1,11 @@
+.checkbox {
+    display: flex;
+    align-items: center;
+    grid-gap: 3px;
+}
+
+.checkbox > input {
+    margin: 0;
+    aspect-ratio: 1/1;
+    width: 15px;
+}

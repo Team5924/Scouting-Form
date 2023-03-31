@@ -56,6 +56,61 @@ export default function App() {
         }
     }
 
+
+    function onBack() {
+        updatePage()
+    }
+
+    function onSubmit() {
+        setData(parseData())
+        updatePage()
+    }
+
+    // * ### States & Event Handlers
+    
+    // ### Prematch
+    const [id, setId] = useState('')
+    const [team, setTeam] = useState('')
+
+    // ### Pit
+    const [speed, setSpeed] = useState('')
+    const [drivetrain, setDrivetrain] = useState('')
+    const [auto, setAuto] = useState([])
+    const [autoSignal, resetAuto] = useState(0)
+    const [climbTime, setClimbTime] = useState('')
+    const [substation, setSubstation] = useState([])
+    const [substationSignal, resetSubstation] = useState(0)
+    const [pieces, setPieces] = useState([])
+    const [piecesSignal, resetPieces] = useState(0)
+
+    // ### Misc
+    const [notes, setNotes] = useState('')
+
+    // ### Summary
+    const [data, setData] = useState()
+
+    useEffect(() => {
+        // console.log(auto)
+    }, [auto])
+
+    /**
+     * * Resets the form questions to their corresponding default/new value
+     */
+    function onReset() {
+        setTeam('')
+        setSpeed('')
+        setDrivetrain('')
+        setAuto([])
+        resetAuto(!autoSignal)
+        setClimbTime('')
+        setSubstation([])
+        resetSubstation(!substationSignal)
+        setPieces([])
+        resetPieces(!piecesSignal)
+        setNotes('')
+        updatePage()
+    }
+
     /**
      * * Compiles and returns a stringified object containing all data from the form
      * ..returns {Object} data
@@ -69,7 +124,6 @@ export default function App() {
             'auto': auto,
             'climbTime': climbTime,
             'substation': substation,
-            'pickup': pickup,
             'pieces': pieces,
             'notes': notes
         }
@@ -77,52 +131,6 @@ export default function App() {
         console.log(JSON.stringify(data) + ',')
         return JSON.stringify(data) + ','
     }
-
-    function onBack() {
-        updatePage()
-    }
-
-    function onSubmit() {
-        setData(parseData())
-        updatePage()
-    }
-
-    /**
-     * * Resets the form questions to their corresponding default/new value
-     */
-    function onReset() {
-        setTeam('')
-        setSpeed('')
-        setDrivetrain('')
-        setAuto('')
-        setClimbTime('')
-        setSubstation('')
-        setPickup('')
-        setPieces('')
-        setNotes('')
-        updatePage()
-    }
-
-    // * ### States & Event Handlers
-    
-    // ### Prematch
-    const [id, setId] = useState('')
-    const [team, setTeam] = useState('')
-
-    // ### Pit
-    const [speed, setSpeed] = useState('')
-    const [drivetrain, setDrivetrain] = useState('')
-    const [auto, setAuto] = useState('')
-    const [climbTime, setClimbTime] = useState('')
-    const [substation, setSubstation] = useState('')
-    const [pickup, setPickup] = useState('')
-    const [pieces, setPieces] = useState('')
-
-    // ### Misc
-    const [notes, setNotes] = useState('')
-
-    // ### Summary
-    const [data, setData] = useState()
 
     return (
         <>
@@ -146,17 +154,21 @@ export default function App() {
                 <Pit
                     speed={speed}
                     drivetrain={drivetrain}
+                    // auto
                     auto={auto}
+                    autoSignal={autoSignal}
                     climbTime={climbTime}
+                    // substation
                     substation={substation}
-                    pickup={pickup}
+                    substationSignal={substationSignal}
+                    // pieces
                     pieces={pieces}
+                    piecesSignal={piecesSignal}
                     setSpeed={setSpeed}
                     setDrivetrain={setDrivetrain}
                     setAuto={setAuto}
                     setClimbTime={setClimbTime}
                     setSubstation={setSubstation}
-                    setPickup={setPickup}
                     setPieces={setPieces}
                 />
             </div>

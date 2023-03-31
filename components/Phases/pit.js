@@ -1,6 +1,22 @@
 import Compiler from '@/lib/compiler.js'
 
-const Pit = ({ speed, drivetrain, auto, climbTime, substation, pickup, pieces, setSpeed, setDrivetrain, setAuto, setClimbTime, setSubstation, setPickup, setPieces }) => {
+const Pit = ({
+    speed,
+    drivetrain,
+    auto,
+    autoSignal,
+    climbTime,
+    substation,
+    substationSignal,
+    pieces,
+    piecesSignal,
+    setSpeed,
+    setDrivetrain,
+    setAuto,
+    setClimbTime,
+    setSubstation,
+    setPieces,
+}) => {
     const questions = [
         {
             label: 'Speed (ft/sec):',
@@ -17,11 +33,12 @@ const Pit = ({ speed, drivetrain, auto, climbTime, substation, pickup, pieces, s
             eventHandler: setDrivetrain
         },
         {
-            label: 'Most Consistent Auto',
-            component: 'radioList',
+            label: 'Auto',
+            component: 'checkboxList',
             options: ['Mobility', 'Docked & Engaged', 'Place Game Pieces', 'No Auto'],
+            resetSignal: autoSignal,
             value: auto,
-            eventHandler: setAuto
+            eventHandler: setAuto,
         },
         {
             label: 'Climb Time?',
@@ -32,22 +49,17 @@ const Pit = ({ speed, drivetrain, auto, climbTime, substation, pickup, pieces, s
         },
         {
             label: 'Substation',
-            component: 'radioList',
-            options: ['Single', 'Double', 'Both'],
+            component: 'checkboxList',
+            options: ['Single', 'Double'],
+            resetSignal: substationSignal,
             value: substation,
             eventHandler: setSubstation
         },
         {
-            label: 'Ground Pickup or HP Station?',
-            component: 'radioList',
-            options: ['Ground Pickup', 'HP Station', 'Both'],
-            value: pickup,
-            eventHandler: setPickup
-        },
-        {
             label: 'Cones or Cubes?',
-            component: 'radioList',
-            options: ['Cones', 'Cubes', 'Both'],
+            component: 'checkboxList',
+            options: ['Cones', 'Cubes'],
+            resetSignal: piecesSignal,
             value: pieces,
             eventHandler: setPieces
         }
