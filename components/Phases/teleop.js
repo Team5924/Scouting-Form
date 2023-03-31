@@ -10,7 +10,7 @@ export default function Teleop({ teleopScore, links, piecesDropped, status, defe
         {
             label: 'Alliance Links:',
             component: 'counter',
-            maxValue: 5,
+            maxValue: 9,
             value: links,
             eventHandler: setLinks
         },
